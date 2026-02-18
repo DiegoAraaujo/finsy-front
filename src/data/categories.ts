@@ -1,19 +1,19 @@
 const categories = [
   {
     id: 1,
-    name: "Food",
+    name: "Comida",
     totalBudget: 8,
     spentAmount: 3.55,
   },
   {
     id: 2,
-    name: "Transport",
+    name: "Transporte",
     totalBudget: 20,
     spentAmount: 12.3,
   },
   {
     id: 3,
-    name: "Entertainment",
+    name: "Entreterimento",
     totalBudget: 15,
     spentAmount: 17.9,
   },
