@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+.loading::after {
+  content: "";
+  animation: dots 2s infinite;
+}
+
+@keyframes dots {
+  0% {
+    content: "";
+  }
+  33% {
+    content: ".";
+  }
+  66% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
+}
