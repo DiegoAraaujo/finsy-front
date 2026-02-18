@@ -6,7 +6,7 @@ interface CategoriesSectionProps {
 }
 const CategoriesSection = ({ categories }: CategoriesSectionProps) => {
   return (
-    <div className="relative z-10 flex flex-1 flex-col gap-4 p-4">
+    <div className="relative z-10 flex flex-1 flex-col gap-4">
       <p className="text-sm font-bold text-gray-500">Categorias</p>
 
       <div className="flex flex-col gap-4">
@@ -22,9 +22,6 @@ const CategoriesSection = ({ categories }: CategoriesSectionProps) => {
           );
         })}
       </div>
-      <button className="absolute right-0 bottom-2 z-10 flex h-15 w-15 animate-bounce cursor-pointer items-center justify-center rounded-full bg-blue-600 text-3xl text-white opacity-50 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:opacity-100">
-        <i className="bi bi-plus" />
-      </button>
     </div>
   );
 };

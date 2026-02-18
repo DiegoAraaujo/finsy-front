@@ -46,7 +46,12 @@ const Home = () => {
         </div>
       )}
 
-      {categories && <CategoriesSection categories={categories} />}
+      <div className="p-4 flex flex-col gap-2">
+        {categories && <CategoriesSection categories={categories} />}
+        <button className="flex w-full cursor-pointer items-center justify-center rounded-xl bg-blue-600 px-4 py-2 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+          <i className="bi bi-plus" /> Registrar Gasto
+        </button>
+      </div>
     </>
   );
 };
