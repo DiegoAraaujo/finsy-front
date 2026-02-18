@@ -1,7 +1,5 @@
 const Historic = () => {
-  return <section className="m-auto w-full max-w-2xl">
-    
-  </section>;
+  return <></>;
 };
 
 export default Historic;
