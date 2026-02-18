@@ -4,16 +4,19 @@ import Onboarding from "./pages/onboarding";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Historic from "./pages/historic";
 import CategoryExpenses from "./pages/CategoryExpenses";
+import Container from "./components/Container";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/category/:id" element={<CategoryExpenses />} />
-        <Route path="/historic" element={<Historic />} />
-        <Route path="/budget-planning" element={<BudgetPlanningPage />} />
-      </Routes>
+      <Container>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/category/:id" element={<CategoryExpenses />} />
+          <Route path="/historic" element={<Historic />} />
+          <Route path="/budget-planning" element={<BudgetPlanningPage />} />
+        </Routes>
+      </Container>
       {/* <Onboarding /> */}
     </BrowserRouter>
   );
