@@ -1,12 +1,15 @@
+import { Link } from "react-router-dom";
 import { formatCurrency } from "../../../utils/formatCurrency";
 
 interface CategoryCardProps {
+  categoryId: number;
   name: string;
   totalBudget: number;
   spentAmount: number;
 }
 
 const CategoryCard = ({
+  categoryId,
   name,
   totalBudget,
   spentAmount,
@@ -18,7 +21,10 @@ const CategoryCard = ({
   const status = spentAmount > totalBudget ? "exceeded" : "ok";
 
   return (
-    <div className="groupcursor-pointer group flex cursor-pointer flex-col gap-4 rounded-2xl border-t border-gray-200 bg-white p-4 transition-all duration-300 hover:bg-gray-100">
+    <Link
+      to={`/category/${categoryId}`}
+      className="groupcursor-pointer group flex cursor-pointer flex-col gap-4 rounded-2xl border-t border-gray-200 bg-white p-4 transition-all duration-300 hover:bg-gray-100"
+    >
       <div className="flex justify-between">
         <div>
           <p className="font-bold">{name}</p>
@@ -46,7 +52,7 @@ const CategoryCard = ({
           {status === "ok" && "Resta:"} {formatCurrency(remainingAmount)}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 
