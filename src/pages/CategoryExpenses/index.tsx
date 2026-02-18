@@ -6,9 +6,9 @@ import SummaryItemCard from "./components/SummaryItemCard";
 
 const CategoryExpenses = () => {
   return (
-    <section className="relative m-auto flex min-h-dvh w-full max-w-2xl flex-col">
+    <>
       <div className="relative h-64">
-        <PageHeaderBackground/>
+        <PageHeaderBackground />
         <Header categoryName="Alimetação" status="ACIMA" />
         <BudgetSummary />
       </div>
@@ -22,7 +22,7 @@ const CategoryExpenses = () => {
       <button className="rounded-2xl bg-blue-600 px-4 py-2 font-medium text-white">
         <i className="bi bi-plus" /> Adicionar gasto
       </button>
-    </section>
+    </>
   );
 };
 
