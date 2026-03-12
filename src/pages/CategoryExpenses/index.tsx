@@ -8,12 +8,11 @@ const CategoryExpenses = () => {
   return (
     <>
       <div className="relative h-64">
-        <PageHeaderBackground />
         <Header categoryName="Alimetação" status="ACIMA" />
         <BudgetSummary />
       </div>
-      <div className="flex justify-around gap-4 border-b border-gray-200 py-2">
-        <SummaryItemCard label="Sálario" value={20} textColor="text-gray-900" />
+      <div className="flex justify-around gap-4 border-b border-gray-200 py-2 relative z-10">
+        <SummaryItemCard label="Reservado para esta categoria" value={20} textColor="text-gray-900" />
         <SummaryItemCard label="Gastos" value={53} textColor="text-gray-900" />
         <SummaryItemCard
           label="Saldo"

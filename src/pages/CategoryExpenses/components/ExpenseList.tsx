@@ -4,7 +4,7 @@ const ExpenseList = () => {
   return (
     <div className="z-10 flex flex-col gap-4">
       <p className="text-sm font-bold text-gray-500">Gastos (5)</p>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <ExpenseItem />
         <ExpenseItem />
         <ExpenseItem />
