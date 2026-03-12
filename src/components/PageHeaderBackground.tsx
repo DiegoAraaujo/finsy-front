@@ -1,12 +1,11 @@
 const PageHeaderBackground = () => {
   return (
-    <div
-      className="absolute top-0 left-0 z-0 h-full w-full max-w-2xl bg-gray-900"
-      style={{
-        clipPath: "polygon(0 0, 100% 0, 100% 82%, 0 100%)",
-      }}
-    />
+    <>
+      <div className="absolute -top-16 -right-16 h-64 w-64 rounded-full bg-[#EFF3FB] z-0" />
+      <div />
+      <div className="bg-[#EFF3FB] absolute top-48 -left-16 h-44 w-44 rounded-full z-0" />
+      <div />
+    </>
   );
 };
-
 export default PageHeaderBackground;
