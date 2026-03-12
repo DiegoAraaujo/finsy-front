@@ -1,0 +1,18 @@
+import api from "./api";
+import { AxiosError } from "axios";
+
+export const login = async (email: string, password: string) => {
+  try {
+    const { data } = await api.post("/users/login", { email, password });
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const status = error.response?.status;
+      if (status === 400 || status === 401) {
+        throw new Error("Email ou senha incorretos");
+      }
+    }
+
+    throw new Error("Não foi possível realizar o login");
+  }
+};
