@@ -19,3 +19,27 @@
     content: "...";
   }
 }
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.delay-1 {
+  animation-delay: 0.2s;
+}
+
+.delay-2 {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
