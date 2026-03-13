@@ -3,13 +3,13 @@ import { Toaster } from "sonner";
 
 import Home from "./pages/home";
 import BudgetPlanningPage from "./pages/budgetPlanningPage";
-import Onboarding from "./pages/onboarding";
 import Historic from "./pages/historic";
 import CategoryExpenses from "./pages/CategoryExpenses";
 import Container from "./components/Container";
 import Login from "./pages/login";
 import { UserContextProvider } from "./contexts/UserContext";
 import ProtectedLayout from "./components/ProtectedLayout";
+import AppGate from "./pages/appGate";
 
 const App = () => {
   return (
@@ -19,15 +19,23 @@ const App = () => {
         <Container>
           <Routes>
             <Route path="/login" element={<Login />} />
-
             <Route
               path="/"
+              element={
+                <ProtectedLayout>
+                  <AppGate />
+                </ProtectedLayout>
+              }
+            />
+            <Route
+              path="/home"
               element={
                 <ProtectedLayout>
                   <Home />
                 </ProtectedLayout>
               }
             />
+
             <Route
               path="/historic"
               element={
