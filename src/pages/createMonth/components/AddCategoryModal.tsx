@@ -20,14 +20,7 @@ const AddCategoryModal = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (
-      !categoryName.trim() ||
-      spendingLimit <= 0 ||
-      spendingLimit > availableBudget
-    )
-      return;
-
-    addCategory(categoryName.trim(), Number(spendingLimit));
+    addCategory(categoryName.trim(), spendingLimit);
     setCategoryName("");
     setSpendingLimit(0);
     onClose();
