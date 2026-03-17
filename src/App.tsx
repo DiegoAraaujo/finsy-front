@@ -10,6 +10,7 @@ import Login from "./pages/login";
 import { UserContextProvider } from "./contexts/UserContext";
 import ProtectedLayout from "./components/ProtectedLayout";
 import AppGate from "./pages/appGate";
+import CreateMonth from "./pages/createMonth";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
                 </ProtectedLayout>
               }
             />
+            <Route path="/create-month" element={<CreateMonth />} />
             <Route
               path="/home"
               element={
