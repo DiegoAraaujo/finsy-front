@@ -11,7 +11,7 @@ const Stepper = ({ currentStep, onStepChange }: StepperProps) => {
         aria-label="Ir para o passo 1 (definir salário)"
         aria-current={currentStep === 1 ? "step" : undefined}
         onClick={() => onStepChange(1)}
-        className={`flex h-8 w-8 items-center justify-center rounded-full font-semibold ${currentStep === 1 ? "bg-blue-200 text-blue-700" : "bg-green-200 text-green-600"}`}
+        className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full font-semibold ${currentStep === 1 ? "bg-blue-200 text-blue-700" : "bg-green-200 text-green-600"}`}
       >
         {currentStep === 2 ? (
           <i className="bi bi-check" aria-hidden="true" />
@@ -27,7 +27,7 @@ const Stepper = ({ currentStep, onStepChange }: StepperProps) => {
         aria-label="Ir para o passo 2 (categorias)"
         aria-current={currentStep === 2 ? "step" : undefined}
         onClick={() => onStepChange(2)}
-        className={`flex h-8 w-8 items-center justify-center rounded-full font-semibold ${currentStep === 2 ? "bg-blue-200 text-blue-700" : "bg-gray-300 text-gray-500"}`}
+        className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full font-semibold ${currentStep === 2 ? "bg-blue-200 text-blue-700" : "bg-gray-300 text-gray-500"}`}
       >
         2
       </button>
