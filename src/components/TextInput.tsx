@@ -7,6 +7,7 @@ interface TextInputProps {
   placeholder?: string;
   icon?: string;
   value: string;
+  autoFocus?: boolean
   onChange: (value: string) => void;
 }
 
@@ -18,6 +19,7 @@ const TextInput = ({
   icon,
   onChange,
   value,
+  autoFocus
 }: TextInputProps) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
@@ -40,6 +42,7 @@ const TextInput = ({
           placeholder={placeholder}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
+          autoFocus={autoFocus}
         />
       </div>
     </div>
