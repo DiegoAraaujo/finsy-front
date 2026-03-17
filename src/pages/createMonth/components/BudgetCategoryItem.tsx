@@ -15,6 +15,7 @@ const BudgetCategoryItem = ({
       <div className="flex w-full justify-between">
         <p className="text-sm font-semibold">{category.name}</p>
         <button
+          aria-label={`Remover categoria ${category.name}`}
           onClick={() => removeCategory(category.name)}
           className="cursor-pointer text-gray-500 transition-all duration-300 hover:-translate-y-0.5 hover:text-red-500"
         >

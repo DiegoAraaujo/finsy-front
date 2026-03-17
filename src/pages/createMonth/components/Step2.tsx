@@ -29,6 +29,9 @@ const Step2 = ({
     <>
       {isAddCategoryModalOpen && (
         <div
+          aria-label="Modal para adicionar categoria"
+          role="dialog"
+          aria-modal="true"
           onClick={() => setIsAddCategoryModalOpen(false)}
           className="fixed top-0 left-0 z-50 flex h-dvh w-dvw items-center justify-center bg-black/50 p-4"
         >
@@ -55,10 +58,11 @@ const Step2 = ({
       />
 
       <button
+        disabled={availableBudget <= 0}
         onClick={() => setIsAddCategoryModalOpen(true)}
-        className={`w-full cursor-pointer rounded-2xl border border-gray-200 bg-blue-100 p-2 font-semibold text-blue-600 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md disabled:transform-none disabled:opacity-60`}
+        className={`w-full cursor-pointer rounded-2xl border border-gray-200 bg-blue-100 p-2 font-semibold text-blue-600 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md disabled:translate-none disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none`}
       >
-        Adionar Categoria
+        Adicionar Categoria
       </button>
 
       <Button

@@ -6,6 +6,7 @@ import Stepper from "./components/Stepper";
 import { toast } from "sonner";
 import { normalizeText } from "../../utils/normalizeText";
 import type { category } from "./interface";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 const CreateMonth = () => {
   const [salary, setSalary] = useState<number>(0);
@@ -23,39 +24,67 @@ const CreateMonth = () => {
   );
 
   const addCategory = (name: string, spendingLimit: number) => {
+    if (!name.trim()) {
+      return toast.warning("Informe um nome para a categoria.");
+    }
+
+    if (spendingLimit <= 0) {
+      return toast.warning("Informe um valor válido para a categoria.");
+    }
+
     const categoryExists = categories.some(
       (c) => normalizeText(c.name) === normalizeText(name),
     );
 
-    if (categoryExists) return toast.warning("categoria já foi adicionada");
+    if (categoryExists)
+      return toast.warning(`Você já adicionou a categoria "${name}".`);
 
     if (spendingLimit > availableBudget)
       return toast.warning(
-        `restam apenas R$ ${availableBudget} para distribuir`,
+        `Valor excede o orçamento disponível (${formatCurrency(availableBudget)}).`,
       );
 
     setCategories((prev) => [...prev, { name, spendingLimit }]);
-    toast.success(`${name} foi adiconado a suas categorias de gasto`);
+    toast.success(`${name} foi adicionada às suas categorias.`);
   };
 
   const removeCategory = (name: string) => {
-    setCategories((prev) => prev.filter((p) => p.name !== name));
-    toast.success(`${name} removido das suas categorias`);
+    setCategories((prev) =>
+      prev.filter((p) => normalizeText(p.name) !== normalizeText(name)),
+    );
+    toast.success(`${name} foi removida das suas categorias.`);
+  };
+
+  const handleStepChange = (nextStep: number) => {
+    if (nextStep === 2 && salary <= 0) {
+      toast.warning("Defina seu salário antes de continuar.");
+      return;
+    }
+
+    setStep(nextStep);
+  };
+
+  const handleSalaryChange = (newSalary: number) => {
+    if (newSalary < totalAllocated) {
+      toast.warning("Seu orçamento está acima do salário.");
+    }
+
+    setSalary(newSalary);
   };
 
   return (
     <section className="m-auto flex h-full w-full max-w-100 flex-col items-center gap-4">
-      <Stepper currentStep={step} onStepChange={setStep} salary={salary} />
+      <Stepper currentStep={step} onStepChange={handleStepChange} />
       {step === 1 && (
         <Step1
           salary={salary}
-          onSalaryChange={setSalary}
-          onStepChange={setStep}
+          onSalaryChange={handleSalaryChange}
+          onStepChange={handleStepChange}
         />
       )}
       {step === 2 && (
         <Step2
-          salary={Number(salary)}
+          salary={salary}
           availableBudget={availableBudget}
           totalAllocated={totalAllocated}
           categories={categories}
