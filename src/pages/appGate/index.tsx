@@ -1,34 +1,54 @@
 import { useEffect } from "react";
 import FinsyLogo from "../../assets/finsy_logo.png";
-import { getCurrentMonth, getLastestMonth } from "../../services/monthService";
-import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { useCurrentMonth } from "../../hooks/month/useCurrentMonth";
+import { useLatestMonth } from "../../hooks/month/useLatestMonth";
 
 const AppGate = () => {
   const navigate = useNavigate();
 
+  const {
+    data: currentData,
+    isLoading: loadingCurrent,
+    error: errorCurrent,
+  } = useCurrentMonth();
+
+  const {
+    data: latestData,
+    isLoading: loadingLatest,
+    error: errorLatest,
+  } = useLatestMonth();
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { month: latestMonth } = await getLastestMonth();
-        const { month: currentMonth } = await getCurrentMonth();
+    if (errorCurrent || errorLatest) {
+      toast.error("Erro ao carregar dados");
+      return;
+    }
 
-        if (currentMonth) {
-          return navigate("/home");
-        }
+    if (loadingCurrent || loadingLatest) return;
 
-        if (latestMonth) {
-          navigate("/");
-        } else {
-          navigate("/");
-        }
-      } catch (error) {
-        if (error instanceof Error) toast.error(error.message);
-      }
-    };
+    if (currentData) {
+      navigate("/home");
+      return;
+    }
 
-    fetchData();
-  }, []);
+    if (latestData) {
+      navigate("/month-gate");
+      return;
+    }
+
+    navigate("/create-month");
+  }, [
+    currentData,
+    latestData,
+    loadingCurrent,
+    loadingLatest,
+    errorCurrent,
+    errorLatest,
+    navigate,
+  ]);
+
   return (
     <div className="flex h-full flex-col items-center justify-center gap-2">
       <img src={FinsyLogo} alt="Finsy logo" className="w-32" />
