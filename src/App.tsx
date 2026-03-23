@@ -28,7 +28,14 @@ const App = () => {
                 </ProtectedLayout>
               }
             />
-            <Route path="/create-month" element={<CreateMonth />} />
+            <Route
+              path="/create-month"
+              element={
+                <ProtectedLayout>
+                  <CreateMonth />
+                </ProtectedLayout>
+              }
+            />
             <Route
               path="/home"
               element={
