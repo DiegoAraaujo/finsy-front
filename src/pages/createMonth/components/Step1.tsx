@@ -6,15 +6,16 @@ interface Step1Props {
   onStepChange: (value: number) => void;
 }
 
-const Step1 = ({
-  salary,
-  onSalaryChange,
-  onStepChange,
-}: Step1Props) => {
+const Step1 = ({ salary, onSalaryChange, onStepChange }: Step1Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const onlyNumbers = e.target.value.replace(/\D/g, "");
     const numeric = Number(onlyNumbers) / 100;
     onSalaryChange(numeric);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onStepChange(2);
   };
 
   return (
@@ -25,7 +26,10 @@ const Step1 = ({
           considere o valor líquido(o que cai na conta)
         </p>
       </div>
-      <div className="flex w-full justify-center gap-4 rounded-2xl border border-gray-300 p-4">
+      <form
+        className="flex w-full justify-center gap-4 rounded-2xl border border-gray-300 p-4"
+        onSubmit={handleSubmit}
+      >
         <p className="text-xl text-gray-500">R$</p>
         <input
           inputMode="numeric"
@@ -36,12 +40,12 @@ const Step1 = ({
           type="text"
           className="flex-1 text-center text-xl focus:outline-0"
         />
-      </div>
-      <Button
-        label="Continuar"
-        disabled={Number(salary) <= 0}
-        onClick={() => onStepChange(2)}
-      />
+        <Button
+          type="submit"
+          label="Continuar"
+          disabled={salary <= 0}
+        />
+      </form>
     </>
   );
 };
