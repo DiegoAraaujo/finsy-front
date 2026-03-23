@@ -1,8 +1,8 @@
-import  { useMemo, useState } from "react";
-import type { category } from "../pages/createMonth/interface";
+import { useMemo, useState } from "react";
+import type { category } from "../../pages/createMonth/interface";
 import { toast } from "sonner";
-import { normalizeText } from "../utils/normalizeText";
-import { formatCurrency } from "../utils/formatCurrency";
+import { normalizeText } from "../../utils/normalizeText";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 const useCreateMonth = () => {
   const [salary, setSalary] = useState<number>(0);
@@ -62,7 +62,7 @@ const useCreateMonth = () => {
 
   const handleSalaryChange = (newSalary: number) => {
     if (newSalary < totalAllocated) {
-      toast.warning("Seu orçamento está acima do salário.");
+      toast.warning("O salário não pode ser menor que o total já alocado.");
     }
 
     setSalary(newSalary);
