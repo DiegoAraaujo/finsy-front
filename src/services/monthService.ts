@@ -33,8 +33,7 @@ export const getLastestMonth = async () => {
       const status = error.response?.status;
 
       if (status === 404) {
-        return null;
-      }
+return null      }
       throw new Error("Ocorreu um erro ao tentar buscar o ultimo mês");
     }
   }
