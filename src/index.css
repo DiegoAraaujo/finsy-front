@@ -23,8 +23,10 @@
 .dot {
   width: 10px;
   height: 10px;
+  background-color: #2563eb; /* azul */
   border-radius: 50%;
-  animation: bounce 0.6s infinite alternate;
+  display: inline-block;
+  animation: bounce 1.2s infinite ease-in-out;
 }
 
 .delay-1 {
@@ -36,10 +38,10 @@
 }
 
 @keyframes bounce {
-  from {
+  0%, 80%, 100% {
     transform: translateY(0);
   }
-  to {
+  40% {
     transform: translateY(-10px);
   }
 }
