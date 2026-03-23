@@ -7,23 +7,30 @@ import BudgetSummary from "./BudgetSummary";
 import type { category } from "../interface";
 
 interface Step2Props {
-  addCategory: (name: string, spendingLimit: number) => void;
-  removeCategory: (name: string) => void;
   salary: number;
   totalAllocated: number;
-  availableBudget: number;
   categories: category[];
+  isCreatingMonth: boolean;
+  availableBudget: number;
+  addCategory: (name: string, spendingLimit: number) => void;
+  removeCategory: (name: string) => void;
+  onCreateMonth: () => void;
 }
 const Step2 = ({
   salary,
+  totalAllocated,
   categories,
+  isCreatingMonth,
+  availableBudget,
   addCategory,
   removeCategory,
-  availableBudget,
-  totalAllocated,
+  onCreateMonth,
 }: Step2Props) => {
   const [isAddCategoryModalOpen, setIsAddCategoryModalOpen] =
     useState<boolean>(false);
+
+  const isValid =
+    salary > 0 && categories.length > 0 && totalAllocated === salary;
 
   return (
     <>
@@ -66,8 +73,15 @@ const Step2 = ({
       </button>
 
       <Button
-        label="Começar a usar"
-        disabled={salary <= 0 || categories.length === 0}
+        onClick={onCreateMonth}
+        loading={isCreatingMonth}
+        loadingLabel="Preparando seu mês..."
+        label={
+          isValid
+            ? "Começar a usar"
+            : `Faltam R$ ${(salary - totalAllocated).toFixed(2)}`
+        }
+        disabled={!isValid}
       />
     </>
   );
