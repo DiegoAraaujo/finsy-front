@@ -16,8 +16,8 @@ const CategoriesSection = ({ categories }: CategoriesSectionProps) => {
               categoryId={c.id}
               key={c.id}
               name={c.name}
-              spentAmount={c.spentAmount}
-              totalBudget={c.totalBudget}
+              totalExpenses={c.totalExpenses}
+              spendingLimit={c.spendingLimit}
             />
           );
         })}
