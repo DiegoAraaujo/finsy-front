@@ -42,7 +42,6 @@ return null      }
 export const getCurrentMonth = async () => {
   try {
     const { data } = await api.get("/months/current");
-    console.log("current deu certo!");
     return data;
   } catch (error) {
     if (error instanceof AxiosError) {
