@@ -62,7 +62,7 @@ const CategoryCard = ({
         <p>
           {isOverBudget ? "Excedido:" : isZero ? "Sem saldo" : "Resta:"}{" "}
           {!isZero && (
-            <span className={isOverBudget ? "text-red-600" : "text-gray-500"}>
+            <span className={isOverBudget ? "text-red-600" : "text-gray-900"}>
               {formatCurrency(Math.abs(remainingAmount))}
             </span>
           )}
