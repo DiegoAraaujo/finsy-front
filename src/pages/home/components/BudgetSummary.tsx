@@ -4,8 +4,7 @@ interface BudgetSummaryProps {
 }
 
 const BudgetSummary = ({ salary, expenses }: BudgetSummaryProps) => {
-  const remaining = salary - expenses;
-
+  const remaining = Math.max(salary - expenses, 0);
   const progress = salary ? Math.min((expenses / salary) * 100, 100) : 0;
 
   const isOverBudget = expenses > salary;
