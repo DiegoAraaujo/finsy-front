@@ -1,8 +1,8 @@
 export interface Category {
   id: number;
   name: string;
-  totalBudget: number;
-  spentAmount: number;
+  spendingLimit: number;
+  totalExpenses: number;
 }
 
 export interface FinancialSummary {
