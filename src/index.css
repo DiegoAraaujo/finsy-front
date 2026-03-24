@@ -23,7 +23,7 @@
 .dot {
   width: 10px;
   height: 10px;
-  background-color: #2563eb; /* azul */
+  background-color: #2563eb;
   border-radius: 50%;
   display: inline-block;
   animation: bounce 1.2s infinite ease-in-out;
@@ -54,4 +54,13 @@ input[type="number"]::-webkit-inner-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;   
 }
