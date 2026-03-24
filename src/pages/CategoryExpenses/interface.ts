@@ -2,11 +2,11 @@ export type PaymentMethod = "CreditCard" | "DebitCard" | "Cash" | "Pix";
 
 export interface Expense {
   id: number;
+  monthId: number;
   categoryId: number;
-  value: number;
+  amount: number;
   description?: string;
   paymentMethod: PaymentMethod;
-  date: string;
 }
 export interface CategoryExpenses {
   categoryId: number;
