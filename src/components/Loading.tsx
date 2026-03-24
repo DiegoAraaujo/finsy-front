@@ -1,7 +1,7 @@
 import LoadingImage from "../assets/loadingImage.png";
 const Loading = () => {
   return (
-    <div className="flex h-dvh flex-col items-center justify-center">
+    <div className="flex h-full flex-col items-center justify-center">
       <img
         src={LoadingImage}
         alt="carregando"
