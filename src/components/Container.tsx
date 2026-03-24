@@ -1,3 +1,5 @@
+import BottomBar from "./BottomBar";
+import Header from "./Header";
 import PageHeaderBackground from "./PageHeaderBackground";
 
 interface ContainerProps {
@@ -6,9 +8,13 @@ interface ContainerProps {
 
 const Container = ({ children }: ContainerProps) => {
   return (
-    <main className="relative m-auto h-dvh min-h-dvh w-full max-w-2xl overflow-y-auto overflow-hidden p-4">
+    <main className="relative m-auto flex h-dvh w-full max-w-2xl flex-col overflow-x-hidden">
       <PageHeaderBackground />
-      <div className="relative z-20 h-full">{children}</div>
+      <Header />
+      <div className="no-scrollbar relative z-20 h-full flex-1 overflow-y-auto p-4">
+        {children}
+      </div>
+      <BottomBar />
     </main>
   );
 };
