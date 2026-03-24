@@ -8,6 +8,10 @@ export const createMonth = async (salary: number, categories: Category[]) => {
     return data;
   } catch (error) {
     if (error instanceof AxiosError) {
+      if (!error.response) {
+        throw new Error("Erro de conexão. Verifique sua internet.");
+      }
+
       const status = error.response?.status;
 
       if (status === 409) {
@@ -30,10 +34,14 @@ export const getLastestMonth = async () => {
     return data;
   } catch (error) {
     if (error instanceof AxiosError) {
+      if (!error.response) {
+        throw new Error("Erro de conexão. Verifique sua internet.");
+      }
       const status = error.response?.status;
 
       if (status === 404) {
-return null      }
+        return null;
+      }
       throw new Error("Ocorreu um erro ao tentar buscar o ultimo mês");
     }
   }
@@ -45,6 +53,10 @@ export const getCurrentMonth = async () => {
     return data;
   } catch (error) {
     if (error instanceof AxiosError) {
+      if (!error.response) {
+        throw new Error("Erro de conexão. Verifique sua internet.");
+      }
+      
       const status = error.response?.status;
 
       if (status === 404) {
