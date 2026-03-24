@@ -3,7 +3,7 @@ import { getCurrentMonth } from "../../services/monthService";
 import type { CurrentMonthData } from "../../types/api/currentMonth";
 
 export const useCurrentMonth = () => {
-  return useQuery<CurrentMonthData>({
+  return useQuery<CurrentMonthData | null>({
     queryKey: ["currentMonth"],
     queryFn: getCurrentMonth,
   });
