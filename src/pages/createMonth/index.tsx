@@ -1,12 +1,10 @@
-import useCreateMonth from "../../hooks/month/useCreateMonth";
-
+import useCreateMonth from "../../hooks/month/useCreateMonthForm";
 import Stepper from "./components/Stepper";
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
-import { createMonth } from "../../services/monthService";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useCreateMonthMutation } from "../../hooks/month/useCreateMonthMutation";
 
 const CreateMonth = () => {
   const {
@@ -21,11 +19,14 @@ const CreateMonth = () => {
     totalAllocated,
   } = useCreateMonth();
 
-  const [loading, setLoading] = useState(false);
+  const { mutateAsync: createMonthMutate, isPending } =
+    useCreateMonthMutation();
+
   const navigate = useNavigate();
 
   const handleCreateMonth = async () => {
-    if (loading) return;
+    if (isPending) return;
+
     if (salary <= 0) {
       return toast.warning("Informe um salário válido.");
     }
@@ -39,16 +40,12 @@ const CreateMonth = () => {
     }
 
     try {
-      setLoading(true);
-      await createMonth(salary, categories);
-      toast.success("Mês criado com sucesso!");
+      await createMonthMutate({ salary, categories });
       navigate("/home");
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
       }
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -65,7 +62,7 @@ const CreateMonth = () => {
       {step === 2 && (
         <Step2
           salary={salary}
-          isCreatingMonth={loading}
+          isCreatingMonth={isPending}
           availableBudget={availableBudget}
           totalAllocated={totalAllocated}
           categories={categories}
