@@ -4,12 +4,12 @@ import AddCategoryModal from "./AddCategoryModal";
 import Button from "../../../components/Button";
 import BudgetCategories from "./BudgetCategories";
 import BudgetSummary from "./BudgetSummary";
-import type { category } from "../interface";
+import type { Category } from "../interface";
 
 interface Step2Props {
   salary: number;
   totalAllocated: number;
-  categories: category[];
+  categories: Category[];
   isCreatingMonth: boolean;
   availableBudget: number;
   addCategory: (name: string, spendingLimit: number) => void;

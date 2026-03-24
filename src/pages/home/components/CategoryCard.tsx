@@ -23,7 +23,7 @@ const CategoryCard = ({
   return (
     <Link
       to={`/category/${categoryId}`}
-      className="groupcursor-pointer group flex cursor-pointer flex-col gap-4 rounded-2xl border-t border-gray-200 bg-white p-4 transition-all duration-300 hover:bg-gray-100"
+      className="group group flex cursor-pointer flex-col gap-4 rounded-2xl border-t border-gray-200 bg-white p-4 transition-all duration-300 hover:bg-gray-100"
     >
       <div className="flex justify-between">
         <div>

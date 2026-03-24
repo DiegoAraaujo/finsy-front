@@ -1,8 +1,8 @@
-import type { category } from "../interface";
+import type { Category } from "../interface";
 import BudgetCategoryItem from "./BudgetCategoryItem";
 
 interface BudgetCategoriesProps {
-  categories: category[];
+  categories: Category[];
   removeCategory: (name: string) => void;
 }
 

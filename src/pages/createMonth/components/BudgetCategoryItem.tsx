@@ -1,8 +1,8 @@
-import type { category } from "../interface";
+import type { Category } from "../interface";
 import { formatCurrency } from "../../../utils/formatCurrency";
 
 interface BudgetCategoryItemProps {
-  category: category;
+  category: Category;
   removeCategory: (name: string) => void;
 }
 
