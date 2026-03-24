@@ -15,7 +15,7 @@ const Home = () => {
   if (error) {
     return <ErrorState message="Erro ao carregar os dados" onRetry={refetch} />;
   }
-  
+
   if (!currentData) return <Loading />;
 
   const totalExpenses = currentData.categories.reduce(
@@ -42,6 +42,11 @@ const Home = () => {
           label="Gastos"
           value={totalExpenses}
           textColor="text-gray-900"
+        />
+        <SummaryItemCard
+          label="Saldo"
+          value={currentData.month.salary - totalExpenses}
+          textColor={`${currentData.month.salary - totalExpenses < 0 ? "text-red-500" : "text-gray-900"}`}
         />
       </div>
 
