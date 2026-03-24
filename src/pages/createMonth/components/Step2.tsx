@@ -64,14 +64,13 @@ const Step2 = ({
         removeCategory={removeCategory}
       />
 
-      <button
-        disabled={availableBudget <= 0}
+      <Button
+        label="Adicionar Categoria"
+        backgroundColor="blue-100"
+        textColor="blue-600"
         onClick={() => setIsAddCategoryModalOpen(true)}
-        className={`w-full cursor-pointer rounded-2xl border border-gray-200 bg-blue-100 p-2 font-semibold text-blue-600 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md disabled:translate-none disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none`}
-      >
-        Adicionar Categoria
-      </button>
-
+        disabled={availableBudget <= 0}
+      />
       <Button
         onClick={onCreateMonth}
         loading={isCreatingMonth}
