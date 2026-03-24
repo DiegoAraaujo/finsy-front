@@ -1,8 +1,8 @@
 import { AxiosError } from "axios";
 import api from "./api";
-import type { category } from "../pages/createMonth/interface";
+import type { Category } from "../pages/createMonth/interface";
 
-export const createMonth = async (salary: number, categories: category[]) => {
+export const createMonth = async (salary: number, categories: Category[]) => {
   try {
     const { data } = await api.post("/months", { salary, categories });
     return data;
