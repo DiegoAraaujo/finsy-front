@@ -1,11 +1,11 @@
 import CategoriesSection from "./components/CategoriesSection";
 import BudgetSummary from "./components/BudgetSummary";
-import Header from "./components/Header";
 import SummaryItemCard from "./components/SummaryItemCard";
 import Loading from "../../components/Loading";
 import { useCurrentMonth } from "../../hooks/month/useCurrentMonth";
 import Button from "../../components/Button";
 import ErrorState from "../../components/ErrorState";
+import { Navigate } from "react-router-dom";
 
 const Home = () => {
   const { data: currentData, error, isLoading, refetch } = useCurrentMonth();
@@ -16,16 +16,17 @@ const Home = () => {
     return <ErrorState message="Erro ao carregar os dados" onRetry={refetch} />;
   }
 
-  if (!currentData) return <Loading />;
+  if (!currentData) return <Navigate to={"/"} />;
 
   const totalExpenses = currentData.categories.reduce(
     (acc, c) => c.totalExpenses + acc,
     0,
   );
+  
   return (
-    <>
+    <div className="h-full flex flex-col">
       <div className="relative h-64">
-        <Header />
+      
         <BudgetSummary
           expenses={totalExpenses}
           salary={currentData.month.salary}
@@ -44,18 +45,18 @@ const Home = () => {
           textColor="text-gray-900"
         />
         <SummaryItemCard
-          label="Saldo"
-          value={currentData.month.salary - totalExpenses}
-          textColor={`${currentData.month.salary - totalExpenses < 0 ? "text-red-500" : "text-gray-900"}`}
+          label="saldo"
+          value={totalExpenses}
+          textColor={`${totalExpenses <= currentData.month.salary ? "text-gray-900" : "text-red-500"} `}
         />
       </div>
 
-      <div className="flex flex-col gap-2 p-4">
+      <div className="flex flex-col gap-4 p-4 flex-1 ">
         <CategoriesSection categories={currentData.categories} />
 
         <Button label="Registrar Gasto" />
       </div>
-    </>
+    </div>
   );
 };
 
