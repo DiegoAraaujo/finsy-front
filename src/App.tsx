@@ -11,6 +11,7 @@ import { UserContextProvider } from "./contexts/UserContext";
 import ProtectedLayout from "./components/ProtectedLayout";
 import AppGate from "./pages/appGate";
 import CreateMonth from "./pages/createMonth";
+import MonthGate from "./pages/monthGate";
 
 const App = () => {
   return (
@@ -33,6 +34,14 @@ const App = () => {
               element={
                 <ProtectedLayout>
                   <CreateMonth />
+                </ProtectedLayout>
+              }
+            />
+            <Route
+              path="/month-gate"
+              element={
+                <ProtectedLayout>
+                  <MonthGate />
                 </ProtectedLayout>
               }
             />
