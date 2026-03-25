@@ -1,19 +1,14 @@
-import { type ReactNode } from "react";
+import { Navigate, Outlet } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
-import { Navigate } from "react-router-dom";
 
-interface ProtectedLayoutProps {
-  children: ReactNode;
-}
-
-const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
+const ProtectedLayout = () => {
   const { user } = useUser();
 
   if (!user) {
     return <Navigate to="/login" replace />;
   }
 
-  return <>{children}</>;
+  return <Outlet />;
 };
 
 export default ProtectedLayout;
