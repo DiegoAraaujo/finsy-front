@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-import useCreateMonth from "../../hooks/month/useCreateMonthForm";
+import useCreateMonthForm from "../../hooks/month/useCreateMonthForm";
 import { useCreateMonthMutation } from "../../hooks/month/useCreateMonthMutation";
 
 import Stepper from "./components/Stepper";
@@ -19,7 +19,7 @@ const CreateMonth = () => {
     salary,
     step,
     totalAllocated,
-  } = useCreateMonth();
+  } = useCreateMonthForm();
 
   const { mutateAsync: createMonthMutate, isPending } =
     useCreateMonthMutation();
