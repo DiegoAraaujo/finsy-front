@@ -7,6 +7,7 @@ import SummaryItemCard from "./components/SummaryItemCard";
 import Loading from "../../components/Loading";
 import { useGetExpensesByCategoryId } from "../../hooks/expense/useGetExpensesByCategoryId";
 import { useGetCategoryById } from "../../hooks/category/useGetCategoryById";
+import Button from "../../components/Button";
 
 const CategoryExpenses = () => {
   const { id } = useParams();
@@ -55,9 +56,7 @@ const CategoryExpenses = () => {
 
       <div className="flex flex-col gap-2 p-4 flex-1">
         <ExpenseList expenses={expenses} categoryId={Number(id)} />
-        <button className="w-full rounded-2xl bg-blue-600 px-4 py-2 font-medium text-white">
-          <i className="bi bi-plus" /> Registrar Gasto
-        </button>
+        <Button label="Registrar Gasto" />
       </div>
     </div>
   );
