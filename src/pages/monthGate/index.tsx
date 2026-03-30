@@ -1,21 +1,27 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import MonthOptionCard from "./components/MonthOptionCard";
-import { useEffect, useState } from "react";
-import { useLatestMonth } from "../../hooks/month/useLatestMonth";
 import { toast } from "sonner";
-import { createMonth } from "../../services/monthService";
-import { MONTHS } from "../../data/months";
-import Loading from "../../components/Loading";
-import type { Category } from "../createMonth/interface";
-import type { Month } from "../appGate/interface";
-const MonthGate = () => {
-  const [loading, setLoading] = useState<boolean>(false);
 
+import { useLatestMonth } from "../../hooks/month/useLatestMonth";
+import { useCreateMonthMutation } from "../../hooks/month/useCreateMonthMutation";
+
+import MonthOptionCard from "./components/MonthOptionCard";
+import Loading from "../../components/Loading";
+
+import { MONTHS } from "../../data/months";
+
+import type { Category } from "../createMonth/interface";
+import type { Month } from "./interface";
+
+const MonthGate = () => {
   const {
     data: latestData,
     isLoading: loadingLatest,
     error: errorLatest,
   } = useLatestMonth();
+
+  const { mutateAsync: createMonthMutate, isPending } =
+    useCreateMonthMutation();
 
   const navigate = useNavigate();
 
@@ -26,12 +32,12 @@ const MonthGate = () => {
 
   useEffect(() => {
     if (errorLatest) {
-      toast.error("Erro ao buscar o último mês.");
+      toast.warning(errorLatest.message);
     }
   }, [errorLatest]);
 
   const handleDuplicateMonth = async () => {
-    if (loading) return;
+    if (isPending) return;
 
     if (!month || categories.length === 0) {
       return toast.warning("Não existe um mês anterior para duplicar.");
@@ -49,17 +55,12 @@ const MonthGate = () => {
     }
 
     try {
-      setLoading(true);
-
-      await createMonth(salary, categories);
-
+      await createMonthMutate({ salary, categories });
       navigate("/home");
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
       }
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -84,7 +85,7 @@ const MonthGate = () => {
           categories={categories.length}
           icon="bi bi-copy"
           onClick={handleDuplicateMonth}
-          disabled={loadingLatest || loading}
+          disabled={loadingLatest || isPending || !latestData}
         />
 
         <MonthOptionCard
@@ -92,7 +93,7 @@ const MonthGate = () => {
           description="Definir salário e categorias"
           icon="bi bi-pencil"
           onClick={() => navigate("/create-month")}
-          disabled={loadingLatest || loading}
+          disabled={loadingLatest || isPending}
         />
       </div>
     </div>
