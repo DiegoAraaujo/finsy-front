@@ -11,6 +11,15 @@ export const getExpensesByCategoryId = async (id: number) => {
   }
 };
 
+export const getExpensesByMonthId = async (id: number) => {
+  try {
+    const { data } = await api.get(`/expenses/month/${id}`);
+    return data;
+  } catch (error) {
+    throw new Error("Não foi possível carregar os gastos deste mês.");
+  }
+};
+
 export const createExpense = async (
   categoryId: number,
   amount: number,
