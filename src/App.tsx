@@ -15,6 +15,7 @@ import FlowLayout from "./components/FlowLayout";
 import AppLayout from "./components/AppLayout";
 import PublicLayout from "./components/PublicLayout";
 import ProtectedLayout from "./components/ProtectedLayout";
+import MonthExpenses from "./pages/monthExpenses";
 
 const App = () => {
   return (
@@ -39,7 +40,7 @@ const App = () => {
               <Route path="/historic" element={<Historic />} />
               <Route path="/budget-planning" element={<BudgetPlanningPage />} />
               <Route path="/category/:id" element={<CategoryExpenses />} />
-              <Route path="/month/:id" element={<CategoryExpenses />} />
+              <Route path="/month/:id" element={<MonthExpenses />} />
             </Route>
           </Route>
         </Routes>
