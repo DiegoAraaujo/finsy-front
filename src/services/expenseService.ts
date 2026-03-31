@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
 import api from "./api";
+import type { PaymentMethod } from "../pages/CategoryExpenses/interface";
 
 export const getExpensesByCategoryId = async (id: number) => {
   try {
@@ -10,6 +11,25 @@ export const getExpensesByCategoryId = async (id: number) => {
   }
 };
 
+export const createExpense = async (
+  categoryId: number,
+  amount: number,
+  paymentMethod: PaymentMethod,
+  date: Date,
+  description?: string,
+) => {
+  try {
+    const { data } = await api.post(`/expenses/${categoryId}`, {
+      amount,
+      paymentMethod,
+      date,
+      description,
+    });
+    return data;
+  } catch (error) {
+    throw new Error("Não foi cadastrar um novo  gasto para esta categoria.");
+  }
+};
 export const deleteExpense = async (id: number) => {
   try {
     return await api.delete(`/expenses/${id}`);
