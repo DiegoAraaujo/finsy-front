@@ -26,6 +26,9 @@ export const useCreateExpense = (categoryId: number) => {
       queryClient.invalidateQueries({
         queryKey: ["expenses", categoryId],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["currentMonth"],
+      });
     },
   });
 };
