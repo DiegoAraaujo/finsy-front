@@ -39,6 +39,7 @@ const App = () => {
               <Route path="/historic" element={<Historic />} />
               <Route path="/budget-planning" element={<BudgetPlanningPage />} />
               <Route path="/category/:id" element={<CategoryExpenses />} />
+              <Route path="/month/:id" element={<CategoryExpenses />} />
             </Route>
           </Route>
         </Routes>
