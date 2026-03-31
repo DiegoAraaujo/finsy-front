@@ -1,34 +1,41 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { useGetExpensesByCategoryId } from "../../hooks/expense/useGetExpensesByCategoryId";
 import { useGetCategoryById } from "../../hooks/category/useGetCategoryById";
-
-import Header from "./components/Header";
-import BudgetSummary from "./components/BudgetSummary";
-import ExpenseList from "./components/ExpenseList";
-import SummaryItemCard from "./components/SummaryItemCard";
-import AddExpenseModal from "./components/AddExpenseModal";
+import { useGetExpensesByCategoryId } from "../../hooks/expense/useGetExpensesByCategoryId";
 
 import Loading from "../../components/Loading";
+
+import AddExpenseModal from "./components/AddExpenseModal";
+import BudgetSummary from "./components/BudgetSummary";
+import ExpenseList from "./components/ExpenseList";
+import Header from "./components/Header";
+import SummaryItemCard from "./components/SummaryItemCard";
+import ErrorState from "../../components/ErrorState";
 
 const CategoryExpenses = () => {
   const [addExpenseModalOpen, setIsAddExpenseModalOpen] =
     useState<boolean>(false);
   const { id } = useParams();
 
-  const { data: category, isLoading: loadingCategory } = useGetCategoryById(
-    Number(id),
-  );
+  const {
+    data: category,
+    isLoading: loadingCategory,
+    isError: errorCategory,
+  } = useGetCategoryById(Number(id));
 
-  const { data: expenses, isLoading: loadingExpenses } =
-    useGetExpensesByCategoryId(Number(id));
+  const {
+    data: expenses,
+    isLoading: loadingExpenses,
+    isError: errorExpenses,
+  } = useGetExpensesByCategoryId(Number(id));
 
   if (loadingCategory || loadingExpenses) {
     return <Loading />;
   }
 
-  if (!category || !expenses) return null;
+  if (!category || !expenses || errorExpenses || errorCategory)
+    return <ErrorState message="Erro ao carregar os detalhes da categoria." />;
 
   const totalExpenses = expenses.reduce((acc, c) => c.amount + acc, 0);
   const currentBalance = category.spendingLimit - totalExpenses;

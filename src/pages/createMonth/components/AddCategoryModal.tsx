@@ -1,9 +1,11 @@
 import { useState } from "react";
+
 import Button from "../../../components/Button";
 import TextInput from "../../../components/TextInput";
-import { formatCurrency } from "../../../utils/formatCurrency";
-import SuggestedCategories from "./SuggestedCategories";
 
+import { formatCurrency } from "../../../utils/formatCurrency";
+
+import SuggestedCategories from "./SuggestedCategories";
 interface AddCategoryModalProps {
   addCategory: (name: string, spendingLimit: number) => void;
   onClose: () => void;

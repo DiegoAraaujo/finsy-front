@@ -1,12 +1,16 @@
 import { useState } from "react";
-import type { PaymentMethod } from "../interface";
+import { toast } from "sonner";
+
+import type { PaymentMethod } from "../../../types/paymentMethod";
+
+import { useCreateExpense } from "../../../hooks/expense/useCreateExpense";
+
 import Button from "../../../components/Button";
 import TextInput from "../../../components/TextInput";
-import { useCreateExpense } from "../../../hooks/expense/useCreateExpense";
-import { toast } from "sonner";
-import PaymentMethodSelect from "./PaymentMethodSelect";
-import DateInput from "./DateInput";
+
 import AmountInput from "./AmountInput";
+import DateInput from "./DateInput";
+import PaymentMethodSelect from "./PaymentMethodSelect";
 
 interface AddExpenseModalProps {
   categoryId: number;

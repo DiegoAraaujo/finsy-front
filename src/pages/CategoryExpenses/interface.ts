@@ -1,4 +1,4 @@
-export type PaymentMethod = "CREDIT_CARD" | "DEBIT_CARD" | "CASH" | "PIX";
+import type { PaymentMethod } from "../../types/paymentMethod";
 
 export interface Expense {
   id: number;

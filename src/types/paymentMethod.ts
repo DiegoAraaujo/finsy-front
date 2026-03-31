@@ -1,0 +1,1 @@
+export type PaymentMethod = "CREDIT_CARD" | "DEBIT_CARD" | "CASH" | "PIX" | "OTHER";

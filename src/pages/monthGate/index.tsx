@@ -11,7 +11,7 @@ import Loading from "../../components/Loading";
 import { MONTHS } from "../../data/months";
 
 import type { Category } from "../createMonth/interface";
-import type { Month } from "./interface";
+import type { Month } from "../../types/Month";
 
 const MonthGate = () => {
   const {

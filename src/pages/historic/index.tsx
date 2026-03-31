@@ -1,6 +1,8 @@
+import { useAllMonths } from "../../hooks/month/useAllMonths";
+
 import ErrorState from "../../components/ErrorState";
 import Loading from "../../components/Loading";
-import { useAllMonths } from "../../hooks/month/useAllMonths";
+
 import MonthCard from "./components/MonthCard";
 
 const Historic = () => {

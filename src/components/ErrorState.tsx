@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 interface ErrorStateProps {
   message?: string;
   onRetry?: () => void;
@@ -12,13 +14,7 @@ const ErrorState = ({
       <p className="text-lg font-semibold text-red-600">{message}</p>
 
       {onRetry && (
-        <button
-          onClick={onRetry}
-          type="button"
-          className="cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-white transition hover:bg-red-700"
-        >
-          Tentar novamente
-        </button>
+        <Button label="Tentar novamente" onClick={onRetry} type="button" />
       )}
     </div>
   );

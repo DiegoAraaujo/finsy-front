@@ -1,4 +1,5 @@
 import type { Category } from "../interface";
+
 import { formatCurrency } from "../../../utils/formatCurrency";
 
 interface BudgetCategoryItemProps {

@@ -1,11 +1,13 @@
-import CategoriesSection from "./components/CategoriesSection";
-import BudgetSummary from "./components/BudgetSummary";
-import SummaryItemCard from "./components/SummaryItemCard";
-import Loading from "../../components/Loading";
-import { useCurrentMonth } from "../../hooks/month/useCurrentMonth";
-import Button from "../../components/Button";
-import ErrorState from "../../components/ErrorState";
 import { Navigate } from "react-router-dom";
+
+import { useCurrentMonth } from "../../hooks/month/useCurrentMonth";
+
+import Loading from "../../components/Loading";
+import ErrorState from "../../components/ErrorState";
+
+import BudgetSummary from "./components/BudgetSummary";
+import CategoriesSection from "./components/CategoriesSection";
+import SummaryItemCard from "./components/SummaryItemCard";
 
 const Home = () => {
   const { data: currentData, error, isLoading, refetch } = useCurrentMonth();
@@ -22,11 +24,10 @@ const Home = () => {
     (acc, c) => c.totalExpenses + acc,
     0,
   );
-  
+
   return (
-    <div className="h-full flex flex-col">
+    <div className="flex h-full flex-col">
       <div className="relative h-64">
-      
         <BudgetSummary
           expenses={totalExpenses}
           salary={currentData.month.salary}
@@ -51,7 +52,7 @@ const Home = () => {
         />
       </div>
 
-      <div className="flex flex-col gap-4 p-4 flex-1 ">
+      <div className="flex flex-1 flex-col gap-4 p-4">
         <CategoriesSection categories={currentData.categories} />
       </div>
     </div>

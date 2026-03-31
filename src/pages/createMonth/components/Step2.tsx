@@ -1,10 +1,12 @@
 import { useState } from "react";
 
-import AddCategoryModal from "./AddCategoryModal";
+import type { Category } from "../interface";
+
 import Button from "../../../components/Button";
+
+import AddCategoryModal from "./AddCategoryModal";
 import BudgetCategories from "./BudgetCategories";
 import BudgetSummary from "./BudgetSummary";
-import type { Category } from "../interface";
 
 interface Step2Props {
   salary: number;

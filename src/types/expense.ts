@@ -1,3 +1,5 @@
+import type { PaymentMethod } from "./paymentMethod";
+
 export interface Expense {
   categoryId: number;
   id: number;
@@ -6,10 +8,3 @@ export interface Expense {
   paymentMethod: PaymentMethod;
   description?: string;
 }
-
-export type PaymentMethod =
-  | "CASH"
-  | "CREDIT_CARD"
-  | "DEBIT_CARD"
-  | "PIX"
-  | "OTHER";

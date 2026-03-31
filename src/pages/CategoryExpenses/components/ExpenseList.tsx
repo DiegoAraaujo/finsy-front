@@ -1,7 +1,8 @@
-import type { Expense } from "../../../types/api/expense";
-import ExpenseItem from "./ExpenseItem";
+import type { Expense } from "../../../types/expense";
+
 import { useDeleteExpense } from "../../../hooks/expense/useDeleteExpense";
-import Button from "../../../components/Button";
+
+import ExpenseItem from "./ExpenseItem";
 
 interface ExpenseListProps {
   expenses: Expense[];

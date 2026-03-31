@@ -1,9 +1,11 @@
 import { useEffect } from "react";
-import FinsyLogo from "../../assets/finsy_logo.png";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+
 import { useCurrentMonth } from "../../hooks/month/useCurrentMonth";
 import { useLatestMonth } from "../../hooks/month/useLatestMonth";
+
+import FinsyLogo from "../../assets/finsy_logo.png";
 
 const AppGate = () => {
   const navigate = useNavigate();

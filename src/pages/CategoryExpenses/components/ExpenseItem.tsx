@@ -1,4 +1,5 @@
-import type { PaymentMethod } from "../../../types/api/expense";
+import type { PaymentMethod } from "../../../types/paymentMethod";
+
 import { formatCurrency } from "../../../utils/formatCurrency";
 
 interface ExpenseItem {

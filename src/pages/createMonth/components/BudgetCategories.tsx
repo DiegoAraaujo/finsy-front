@@ -1,4 +1,5 @@
 import type { Category } from "../interface";
+
 import BudgetCategoryItem from "./BudgetCategoryItem";
 
 interface BudgetCategoriesProps {

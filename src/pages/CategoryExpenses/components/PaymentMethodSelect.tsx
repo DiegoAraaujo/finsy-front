@@ -1,4 +1,4 @@
-import type { PaymentMethod } from "../interface";
+import type { PaymentMethod } from "../../../types/paymentMethod";
 
 interface Props {
   value: PaymentMethod;
@@ -8,9 +8,7 @@ interface Props {
 const PaymentMethodSelect = ({ value, onChange }: Props) => {
   return (
     <div className="flex flex-col gap-2">
-      <label className="font-medium text-gray-500">
-        Método de Pagamento
-      </label>
+      <label className="font-medium text-gray-500">Método de Pagamento</label>
 
       <select
         value={value}
