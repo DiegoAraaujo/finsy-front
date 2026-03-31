@@ -1,6 +1,6 @@
 const BudgetSummary = () => {
   return (
-    <div className="relative z-10 flex flex-col items-center gap-4">
+    <div className="relative z-10 flex flex-col items-center gap-4 py-8">
       <div className="flex flex-col gap-1">
         <p className="text-center font-semibold text-gray-400">Disponível</p>
         <p className="text-5xl font-bold text-blue-700">R$ 20,58</p>

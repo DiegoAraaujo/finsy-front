@@ -13,7 +13,7 @@ const ExpenseList = ({ expenses, categoryId }: ExpenseListProps) => {
   return (
     <div className="z-10 flex flex-col gap-4 flex-1">
       <p className="text-sm font-bold text-gray-500">
-        Gastos ({expenses.length})
+        Quantidade de Gastos ({expenses.length})
       </p>
 
       <div className="flex flex-col gap-2">
