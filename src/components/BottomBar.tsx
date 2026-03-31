@@ -2,35 +2,35 @@ import { Link } from "react-router-dom";
 
 const BottomBar = () => {
   return (
-    <div className="z-20 flex w-full justify-between border-t border-gray-300 bg-white p-4">
+    <div className="flex w-full justify-between border-t border-gray-300 bg-white p-4">
       <Link
         to="/home"
         className="flex flex-col items-center rounded-2xl px-4 py-1 font-semibold hover:bg-blue-100 hover:text-blue-700"
       >
-        <i className="bi bi-house text-lg" />
-        <span className="text-xs sm:text-sm">Home</span>
+        <i className="bi bi-house" />
+        <span className="text-xs">Home</span>
       </Link>
       <Link
         to="/"
         className="flex flex-col items-center rounded-2xl px-4 py-1 font-semibold hover:bg-blue-100 hover:text-blue-700"
       >
-        <i className="bi bi-clock-history text-lg" />
-        <span className="text-xs sm:text-sm">Historico</span>
+        <i className="bi bi-clock-history" />
+        <span className="text-xs">Historico</span>
       </Link>
 
       <Link
         to="/"
         className="flex flex-col items-center rounded-2xl px-4 py-1 font-semibold hover:bg-blue-100 hover:text-blue-700"
       >
-        <i className="bi bi-bar-chart-line text-lg" />
-        <span className="text-xs sm:text-sm">Visão Geral</span>
+        <i className="bi bi-bar-chart-line" />
+        <span className="text-xs">Visão Geral</span>
       </Link>
       <Link
         to="/"
         className="flex flex-col items-center rounded-2xl px-4 py-1 font-semibold hover:bg-blue-100 hover:text-blue-700"
       >
-        <i className="bi bi-gear text-lg" />
-        <span className="text-xs sm:text-sm">Configurações</span>
+        <i className="bi bi-gear" />
+        <span className="text-xs">Configurações</span>
       </Link>
     </div>
   );
