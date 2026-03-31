@@ -97,7 +97,6 @@ const AddExpenseModal = ({ onClose, categoryId }: AddExpenseModalProps) => {
         id="description"
         onChange={setDescription}
         placeholder="Ex: Almoço no restaurante"
-        autoFocus={true}
         maxLength={80}
       />
 
