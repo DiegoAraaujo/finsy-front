@@ -53,8 +53,6 @@ const Home = () => {
 
       <div className="flex flex-col gap-4 p-4 flex-1 ">
         <CategoriesSection categories={currentData.categories} />
-
-        <Button label="Registrar Gasto" />
       </div>
     </div>
   );
