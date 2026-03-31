@@ -11,7 +11,7 @@ const BottomBar = () => {
         <span className="text-center text-[10px] sm:text-xs">Home</span>
       </Link>
       <Link
-        to="/"
+        to="/historic"
         className="flex flex-col items-center rounded-2xl px-4 py-1 font-semibold hover:bg-blue-100 hover:text-blue-700"
       >
         <i className="bi bi-clock-history" />
