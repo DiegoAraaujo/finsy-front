@@ -18,11 +18,16 @@ const ExpenseList = ({
 
   return (
     <div className="z-10 flex flex-1 flex-col gap-4">
-      <div className="grid grid-cols-2 items-end gap-4">
+      <div className="grid grid-cols-2 items-center gap-4">
         <p className="text-left text-xs font-bold text-gray-500">
           Quantidade de Gastos ({expenses.length})
         </p>
-        <Button label="Registrar Gasto" onClick={onRegisterExpense} />
+        <button
+          onClick={onRegisterExpense}
+          className="cursor-pointer rounded-2xl border border-gray-300 bg-blue-600 p-1.5 text-xs font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+        >
+          Registrar Gasto
+        </button>
       </div>
 
       <div className="flex flex-col gap-2">

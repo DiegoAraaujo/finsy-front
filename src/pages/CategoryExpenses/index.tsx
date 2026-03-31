@@ -10,7 +10,6 @@ import ExpenseList from "./components/ExpenseList";
 import SummaryItemCard from "./components/SummaryItemCard";
 import AddExpenseModal from "./components/AddExpenseModal";
 
-import Button from "../../components/Button";
 import Loading from "../../components/Loading";
 
 const CategoryExpenses = () => {
@@ -32,7 +31,11 @@ const CategoryExpenses = () => {
   if (!category || !expenses) return null;
 
   const totalExpenses = expenses.reduce((acc, c) => c.amount + acc, 0);
-
+  const currentBalance = category.spendingLimit - totalExpenses;
+  const usagePercentage =
+    category.spendingLimit > 0
+      ? (totalExpenses / category.spendingLimit) * 100
+      : 0;
   return (
     <div className="flex h-full flex-col">
       {addExpenseModalOpen && (
@@ -50,8 +53,11 @@ const CategoryExpenses = () => {
         </div>
       )}
       <div className="relative h-64">
-        <Header categoryName={category.name} status="ACIMA" />
-        <BudgetSummary />
+        <Header categoryName={category.name} />
+        <BudgetSummary
+          balance={currentBalance}
+          usagePercentage={usagePercentage}
+        />
       </div>
       <div className="relative z-10 flex justify-around gap-4 border-b border-gray-200 py-2">
         <SummaryItemCard
