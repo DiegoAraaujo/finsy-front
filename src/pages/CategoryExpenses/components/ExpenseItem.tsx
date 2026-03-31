@@ -12,7 +12,7 @@ const paymentMethodLabel: Record<PaymentMethod, string> = {
   CASH: "Dinheiro",
   CREDIT_CARD: "Cartão de Crédito",
   DEBIT_CARD: "Cartão de Débito",
-  PIX: "PIX",
+  PIX: "Pix",
   OTHER: "Outro",
 };
 
@@ -27,7 +27,7 @@ const ExpenseItem = ({
     <div className="flex justify-between rounded-t-lg border-t border-gray-300 py-4">
       <div className="flex flex-col gap-1">
         <span className="flex items-center gap-4">
-          <p className="text-lg font-semibold">{formatCurrency(amount)}</p>
+          <p className="font-semibold">{formatCurrency(amount)}</p>
           <p className="text-sm font-medium text-gray-500">
             {paymentMethodLabel[paymentMethod]}
           </p>
