@@ -7,6 +7,7 @@ interface BudgetSummaryProps {
 
 const BudgetSummary = ({ balance, usagePercentage }: BudgetSummaryProps) => {
   const isPositive = balance >= 0;
+  const roundedPercentage = Math.round(usagePercentage);
   const barWidth = Math.min(usagePercentage, 100);
 
   return (
@@ -28,7 +29,7 @@ const BudgetSummary = ({ balance, usagePercentage }: BudgetSummaryProps) => {
           ></div>
         </div>
         <p className="text-center text-xs text-gray-400">
-          {usagePercentage}% usado
+          {roundedPercentage}% usado
         </p>
       </div>
     </div>

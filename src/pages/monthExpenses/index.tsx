@@ -53,7 +53,7 @@ const MonthExpenses = () => {
   return (
     <div className="flex h-full flex-col">
       <div className="relative h-64">
-        <Header title="fevereiro de 2026" />
+        <Header />
         <BudgetSummary balance={balance} usagePercentage={usagePercentage} />
       </div>
 
@@ -66,7 +66,7 @@ const MonthExpenses = () => {
         <SummaryItemCard
           label="Gastos"
           value={totalSpent}
-          textColor="text-red-600"
+          textColor="text-gray-900"
         />
       </div>
 
