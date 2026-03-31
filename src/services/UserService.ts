@@ -16,3 +16,18 @@ export const login = async (email: string, password: string) => {
     throw new Error("Não foi possível realizar o login");
   }
 };
+
+export const refreshToken = async () => {
+  try {
+    const { data } = await api.post("/users/refresh");
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const status = error.response?.status;
+      if (status === 401) {
+        throw new Error("Sua sessão expirou. Faça login novamente.");
+      }
+    }
+    throw new Error("Não foi possível renovar sua sessão. Tente novamente.");
+  }
+};
