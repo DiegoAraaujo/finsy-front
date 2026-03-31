@@ -18,8 +18,8 @@ const PasswordInput = ({
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   return (
-    <div>
-      <label htmlFor={id} className="text-gray-500">
+    <div className="flex flex-col gap-2">
+      <label htmlFor={id} className="font-medium text-gray-500">
         {label}
       </label>
       <div

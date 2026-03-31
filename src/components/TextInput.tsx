@@ -7,7 +7,8 @@ interface TextInputProps {
   placeholder?: string;
   icon?: string;
   value: string;
-  autoFocus?: boolean
+  autoFocus?: boolean;
+  maxLength?: number;
   onChange: (value: string) => void;
 }
 
@@ -19,13 +20,14 @@ const TextInput = ({
   icon,
   onChange,
   value,
-  autoFocus
+  maxLength,
+  autoFocus,
 }: TextInputProps) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   return (
-    <div>
-      <label htmlFor={id} className="text-gray-500">
+    <div className="flex flex-col gap-2">
+      <label htmlFor={id} className="font-medium text-gray-500">
         {label}
       </label>
 
@@ -43,6 +45,7 @@ const TextInput = ({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           autoFocus={autoFocus}
+          maxLength={maxLength}
         />
       </div>
     </div>
