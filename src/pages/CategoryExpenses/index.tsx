@@ -76,11 +76,12 @@ const CategoryExpenses = () => {
       </div>
 
       <div className="flex flex-1 flex-col gap-2 p-4">
-        <ExpenseList expenses={expenses} categoryId={Number(id)} />
-        <Button
-          label="Registrar Gasto"
-          onClick={() => setIsAddExpenseModalOpen(true)}
+        <ExpenseList
+          expenses={expenses}
+          categoryId={Number(id)}
+          onRegisterExpense={() => setIsAddExpenseModalOpen(true)}
         />
+        <Button label="Registrar Gasto" />
       </div>
     </div>
   );

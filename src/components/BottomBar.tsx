@@ -8,14 +8,14 @@ const BottomBar = () => {
         className="flex flex-col items-center rounded-2xl px-4 py-1 font-semibold hover:bg-blue-100 hover:text-blue-700"
       >
         <i className="bi bi-house" />
-        <span className="text-xs">Home</span>
+        <span className="text-center text-[10px] sm:text-xs">Home</span>
       </Link>
       <Link
         to="/"
         className="flex flex-col items-center rounded-2xl px-4 py-1 font-semibold hover:bg-blue-100 hover:text-blue-700"
       >
         <i className="bi bi-clock-history" />
-        <span className="text-xs">Historico</span>
+        <span className="text-center text-[10px] sm:text-xs">Historico</span>
       </Link>
 
       <Link
@@ -23,14 +23,16 @@ const BottomBar = () => {
         className="flex flex-col items-center rounded-2xl px-4 py-1 font-semibold hover:bg-blue-100 hover:text-blue-700"
       >
         <i className="bi bi-bar-chart-line" />
-        <span className="text-xs">Visão Geral</span>
+        <span className="text-center text-[10px] sm:text-xs">Visão Geral</span>
       </Link>
       <Link
         to="/"
         className="flex flex-col items-center rounded-2xl px-4 py-1 font-semibold hover:bg-blue-100 hover:text-blue-700"
       >
         <i className="bi bi-gear" />
-        <span className="text-xs">Configurações</span>
+        <span className="text-center text-[10px] sm:text-xs">
+          Configurações
+        </span>
       </Link>
     </div>
   );
