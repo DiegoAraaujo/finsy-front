@@ -56,7 +56,7 @@ export const getCurrentMonth = async () => {
       if (!error.response) {
         throw new Error("Erro de conexão. Verifique sua internet.");
       }
-      
+
       const status = error.response?.status;
 
       if (status === 404) {
@@ -64,6 +64,20 @@ export const getCurrentMonth = async () => {
       }
 
       throw new Error("Ocorreu um erro ao buscar o mês atual");
+    }
+  }
+};
+
+export const getAllMonths = async () => {
+  try {
+    const { data } = await api.get("/months");
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      if (!error.response) {
+        throw new Error("Erro de conexão. Verifique sua internet.");
+      }
+      throw new Error("Ocorreu um erro ao buscar o historico de meses");
     }
   }
 };
