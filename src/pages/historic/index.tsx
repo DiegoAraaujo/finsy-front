@@ -16,24 +16,37 @@ const Historic = () => {
 
   return (
     <div className="flex h-full flex-col">
-        <div className="relative z-10 flex flex-col items-center gap-2 py-8">
-          <p className="text-center font-semibold text-gray-400">
-            Meses registrados
-          </p>
-          <p className="text-5xl font-bold text-blue-700">5</p>
-        </div>
+      <div className="relative z-10 flex flex-col items-center gap-2 py-8">
+        <p className="text-center font-semibold text-gray-400">
+          Meses registrados
+        </p>
+        <p className="text-5xl font-bold text-blue-700">{allMonths.length}</p>
+      </div>
 
       <div className="flex flex-1 flex-col gap-4 p-4">
-        {allMonths.map((month) => {
-          return (
-            <MonthCard
-              month={month.month}
-              monthId={month.id}
-              salary={month.salary}
-              year={month.year}
-            />
-          );
-        })}
+        {allMonths.length > 0 ? (
+          allMonths.map((month) => {
+            return (
+              <MonthCard
+                month={month.month}
+                monthId={month.id}
+                salary={month.salary}
+                year={month.year}
+              />
+            );
+          })
+        ) : (
+          <div className="flex flex-1 flex-col items-center justify-center gap-2 p-8 text-center">
+            <div className="mb-2 text-5xl opacity-20">📅</div>
+            <p className="font-semibold text-gray-600">
+              Seu histórico está vazio
+            </p>
+            <p className="text-sm text-gray-400">
+              Parece que você ainda não tem meses registrados. Comece criando um
+              novo planejamento mensal!
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

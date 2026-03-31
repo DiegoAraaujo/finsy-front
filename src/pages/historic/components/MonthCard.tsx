@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { formatCurrency } from "../../../utils/formatCurrency";
+import { formatMonthYear } from "../../../utils/formatMonthName";
 
 interface MonthCardProps {
   monthId: number;
@@ -9,15 +10,6 @@ interface MonthCardProps {
 }
 
 const MonthCard = ({ month, monthId, salary, year }: MonthCardProps) => {
-  const date = new Date(year, month - 1);
-
-  const rawMonthName = new Intl.DateTimeFormat("pt-BR", {
-    month: "long",
-  }).format(date);
-
-  const monthName =
-    rawMonthName.charAt(0).toUpperCase() + rawMonthName.slice(1);
-
   return (
     <Link
       to={`/month/${monthId}`}
@@ -25,9 +17,7 @@ const MonthCard = ({ month, monthId, salary, year }: MonthCardProps) => {
     >
       <div className="flex justify-between">
         <div className="flex flex-col gap-1">
-          <p className="font-bold">
-            {monthName} de {year}
-          </p>
+          <p className="font-bold">{formatMonthYear(month, year)}</p>
           <p className="text-sm font-medium text-gray-500">
             Salário {formatCurrency(salary)}
           </p>
