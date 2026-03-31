@@ -81,7 +81,6 @@ const CategoryExpenses = () => {
           categoryId={Number(id)}
           onRegisterExpense={() => setIsAddExpenseModalOpen(true)}
         />
-        <Button label="Registrar Gasto" />
       </div>
     </div>
   );
