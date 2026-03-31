@@ -1,7 +1,6 @@
 import ErrorState from "../../components/ErrorState";
 import Loading from "../../components/Loading";
 import { useAllMonths } from "../../hooks/month/useAllMonths";
-import BudgetSummary from "./components/BudgetSummary";
 import MonthCard from "./components/MonthCard";
 
 const Historic = () => {
@@ -17,9 +16,12 @@ const Historic = () => {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="relative h-44">
-        <BudgetSummary />
-      </div>
+        <div className="relative z-10 flex flex-col items-center gap-2 py-8">
+          <p className="text-center font-semibold text-gray-400">
+            Meses registrados
+          </p>
+          <p className="text-5xl font-bold text-blue-700">5</p>
+        </div>
 
       <div className="flex flex-1 flex-col gap-4 p-4">
         {allMonths.map((month) => {
