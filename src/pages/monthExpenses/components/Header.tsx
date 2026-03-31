@@ -10,7 +10,7 @@ const Header = () => {
         <i className="bi bi-arrow-left text-xl text-gray-400" />
       </Link>
       <span>
-        <p className="text-sm font-bold text-gray-400">Detalhes do mês</p>
+        <p className="text-sm font-bold ">Detalhes do mês</p>
       </span>
     </header>
   );
