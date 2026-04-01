@@ -27,7 +27,7 @@ const Home = () => {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="relative h-64">
+      <div className="relative h-54">
         <BudgetSummary
           salary={currentData.month.salary}
           expenses={totalExpenses}
