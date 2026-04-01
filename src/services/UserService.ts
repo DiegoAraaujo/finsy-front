@@ -31,3 +31,12 @@ export const refreshToken = async () => {
     throw new Error("Não foi possível renovar sua sessão. Tente novamente.");
   }
 };
+
+export const logOut = async () => {
+  try {
+    const { data } = await api.post("/users/logout");
+    return data;
+  } catch (error) {
+    throw new Error("Ocorreu um erro ao tentar encertrar a sessão");
+  }
+};
