@@ -18,6 +18,7 @@ const ExpenseList = ({ expenses }: ExpenseListProps) => {
             <ExpenseItem
               key={expense.id}
               amount={expense.amount}
+              expenseDate={expense.createdAt}
               description={expense.description}
               paymentMethod={expense.paymentMethod}
             />
