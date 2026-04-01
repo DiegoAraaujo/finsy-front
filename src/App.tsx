@@ -16,6 +16,7 @@ import PublicLayout from "./components/PublicLayout";
 import ProtectedLayout from "./components/ProtectedLayout";
 import MonthExpenses from "./pages/monthExpenses";
 import Dashboard from "./pages/dashboard";
+import Settings from "./pages/settings";
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
               <Route path="/home" element={<Home />} />
               <Route path="/historic" element={<Historic />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/settings" element={<Settings />} />
               <Route path="/category/:id" element={<CategoryExpenses />} />
               <Route path="/month/:id" element={<MonthExpenses />} />
             </Route>
