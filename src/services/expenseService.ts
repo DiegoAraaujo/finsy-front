@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import api from "./api";
-import type { PaymentMethod } from "../pages/CategoryExpenses/interface";
+import type { PaymentMethod } from "../types/paymentMethod";
 
 export const getExpensesByCategoryId = async (id: number) => {
   try {
