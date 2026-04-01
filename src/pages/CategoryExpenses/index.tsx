@@ -9,7 +9,7 @@ import Loading from "../../components/Loading";
 import AddExpenseModal from "./components/AddExpenseModal";
 // import BudgetSummary from "./components/BudgetSummary";
 import ExpenseList from "./components/ExpenseList";
-import Header from "./components/Header";
+import Header from "../../components/Header";
 import SummaryItemCard from "./components/SummaryItemCard";
 import ErrorState from "../../components/ErrorState";
 import BudgetSummary from "../../components/BudgetSummary";
@@ -58,7 +58,7 @@ const CategoryExpenses = () => {
         </div>
       )}
       <div className="relative h-64">
-        <Header categoryName={category.name} />
+        <Header title={category.name} backTo="home" subtitle="Detalhes da Categoria" />
         <BudgetSummary
           salary={currentBalance}
           expenses={totalExpenses}
