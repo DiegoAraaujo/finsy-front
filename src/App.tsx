@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 
 import Home from "./pages/home";
-import BudgetPlanningPage from "./pages/budgetPlanningPage";
 import Historic from "./pages/historic";
 import CategoryExpenses from "./pages/CategoryExpenses";
 import Login from "./pages/login";
@@ -38,7 +37,6 @@ const App = () => {
             <Route element={<AppLayout />}>
               <Route path="/home" element={<Home />} />
               <Route path="/historic" element={<Historic />} />
-              <Route path="/budget-planning" element={<BudgetPlanningPage />} />
               <Route path="/category/:id" element={<CategoryExpenses />} />
               <Route path="/month/:id" element={<MonthExpenses />} />
             </Route>
