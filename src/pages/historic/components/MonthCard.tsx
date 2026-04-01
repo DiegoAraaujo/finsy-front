@@ -7,12 +7,20 @@ interface MonthCardProps {
   month: number;
   year: number;
   salary: number;
+  isCurrentMonth: boolean;
 }
 
-const MonthCard = ({ month, monthId, salary, year }: MonthCardProps) => {
+const MonthCard = ({
+  month,
+  monthId,
+  salary,
+  year,
+  isCurrentMonth,
+}: MonthCardProps) => {
   return (
     <Link
       to={`/month/${monthId}`}
+      state={{ isCurrentMonth }}
       className="group flex cursor-pointer flex-col gap-4 rounded-2xl border-t border-gray-200 bg-white p-4 transition-all duration-300 hover:bg-gray-100"
     >
       <div className="flex justify-between">

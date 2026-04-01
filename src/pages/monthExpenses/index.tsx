@@ -1,20 +1,22 @@
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 import { useGetCategoriesWithExpenses } from "../../hooks/category/useGetCategoriesWithExpenses";
 import { useGetExpensesByMonthId } from "../../hooks/expense/useGetExpensesByMonthId";
 
 import ErrorState from "../../components/ErrorState";
 
-import BudgetSummary from "./components/BudgetSummary";
 import ExpenseList from "./components/ExpenseList";
 import MonthlyFinanceChart from "./components/FinanceChart";
 import Header from "./components/Header";
 import SummaryItemCard from "./components/SummaryItemCard";
+import BudgetSummary from "../../components/BudgetSummary";
 
 const MonthExpenses = () => {
   const { id } = useParams();
+  const location = useLocation();
   const monthId = Number(id);
 
+  const isCurrentMonth = location.state?.isCurrentMonth ?? false;
   const {
     data: categories,
     isLoading: isLoadingCategories,
@@ -30,11 +32,8 @@ const MonthExpenses = () => {
   const salary =
     categories?.reduce((acc, cat) => acc + (cat.spendingLimit || 0), 0) || 0;
 
-  const totalSpent =
+  const totalExpenses =
     expenses?.reduce((acc, exp) => acc + (exp.amount || 0), 0) || 0;
-
-  const balance = salary - totalSpent;
-  const usagePercentage = salary > 0 ? (totalSpent / salary) * 100 : 0;
 
   if (isLoadingCategories || isLoadingExpenses) {
     return (
@@ -56,7 +55,11 @@ const MonthExpenses = () => {
     <div className="flex h-full flex-col">
       <div className="relative h-64">
         <Header />
-        <BudgetSummary balance={balance} usagePercentage={usagePercentage} />
+        <BudgetSummary
+          salary={salary}
+          expenses={totalExpenses}
+          isCurrentMonth={isCurrentMonth}
+        />
       </div>
 
       <div className="relative z-10 flex justify-around gap-4 border-b border-gray-200 py-2">
@@ -67,7 +70,7 @@ const MonthExpenses = () => {
         />
         <SummaryItemCard
           label="Gastos"
-          value={totalSpent}
+          value={totalExpenses}
           textColor="text-gray-900"
         />
       </div>

@@ -7,11 +7,12 @@ import { useGetExpensesByCategoryId } from "../../hooks/expense/useGetExpensesBy
 import Loading from "../../components/Loading";
 
 import AddExpenseModal from "./components/AddExpenseModal";
-import BudgetSummary from "./components/BudgetSummary";
+// import BudgetSummary from "./components/BudgetSummary";
 import ExpenseList from "./components/ExpenseList";
 import Header from "./components/Header";
 import SummaryItemCard from "./components/SummaryItemCard";
 import ErrorState from "../../components/ErrorState";
+import BudgetSummary from "../../components/BudgetSummary";
 
 const CategoryExpenses = () => {
   const [addExpenseModalOpen, setIsAddExpenseModalOpen] =
@@ -39,10 +40,7 @@ const CategoryExpenses = () => {
 
   const totalExpenses = expenses.reduce((acc, c) => c.amount + acc, 0);
   const currentBalance = category.spendingLimit - totalExpenses;
-  const usagePercentage =
-    category.spendingLimit > 0
-      ? (totalExpenses / category.spendingLimit) * 100
-      : 0;
+
   return (
     <div className="flex h-full flex-col">
       {addExpenseModalOpen && (
@@ -62,8 +60,9 @@ const CategoryExpenses = () => {
       <div className="relative h-64">
         <Header categoryName={category.name} />
         <BudgetSummary
-          balance={currentBalance}
-          usagePercentage={usagePercentage}
+          salary={currentBalance}
+          expenses={totalExpenses}
+          isCurrentMonth={true}
         />
       </div>
       <div className="relative z-10 flex justify-around gap-4 border-b border-gray-200 py-2">

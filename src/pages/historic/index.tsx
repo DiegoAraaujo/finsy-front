@@ -8,6 +8,10 @@ import MonthCard from "./components/MonthCard";
 const Historic = () => {
   const { data: allMonths, isLoading, isError } = useAllMonths();
 
+  const today = new Date();
+  const currentMonth = today.getMonth() + 1;
+  const currentYear = today.getFullYear();
+
   if (isLoading) {
     return <Loading />;
   }
@@ -28,12 +32,15 @@ const Historic = () => {
       <div className="flex flex-1 flex-col gap-4 p-4">
         {allMonths.length > 0 ? (
           allMonths.map((month) => {
+            const isToday =
+              month.month === currentMonth && month.year === currentYear;
             return (
               <MonthCard
                 month={month.month}
                 monthId={month.id}
                 salary={month.salary}
                 year={month.year}
+                isCurrentMonth={isToday}
               />
             );
           })
