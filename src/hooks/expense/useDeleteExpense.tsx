@@ -15,6 +15,9 @@ export const useDeleteExpense = (categoryId: number) => {
       queryClient.invalidateQueries({
         queryKey: ["currentMonth"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["allMonths"],
+      });
     },
   });
 };
