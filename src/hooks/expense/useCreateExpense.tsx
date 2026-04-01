@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createExpense } from "../../services/expenseService";
-import type { PaymentMethod } from "../../pages/CategoryExpenses/interface";
+import type { PaymentMethod } from "../../types/paymentMethod";
 
 interface CreateExpenseParams {
   amount: number;
   paymentMethod: PaymentMethod;
-  date: Date;
   description?: string;
+  createdAt: Date;
 }
 
 export const useCreateExpense = (categoryId: number) => {
@@ -18,7 +18,7 @@ export const useCreateExpense = (categoryId: number) => {
         categoryId,
         data.amount,
         data.paymentMethod,
-        data.date,
+        data.createdAt,
         data.description,
       ),
 

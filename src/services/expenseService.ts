@@ -24,14 +24,14 @@ export const createExpense = async (
   categoryId: number,
   amount: number,
   paymentMethod: PaymentMethod,
-  date: Date,
+  createdAt: Date,
   description?: string,
 ) => {
   try {
     const { data } = await api.post(`/expenses/${categoryId}`, {
       amount,
       paymentMethod,
-      date,
+      createdAt,
       description,
     });
     return data;

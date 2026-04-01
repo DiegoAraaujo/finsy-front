@@ -23,7 +23,7 @@ const AddExpenseModal = ({ onClose, categoryId }: AddExpenseModalProps) => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("PIX");
 
   const today = new Date().toISOString().split("T")[0];
-  const [date, setDate] = useState<string>(today);
+  const [expenseDate, setExpenseDate] = useState<string>(today);
 
   const { mutateAsync, isPending } = useCreateExpense(categoryId);
 
@@ -34,11 +34,11 @@ const AddExpenseModal = ({ onClose, categoryId }: AddExpenseModalProps) => {
       return toast.warning("Informe um valor válido para o gasto.");
     }
 
-    if (!date) {
+    if (!expenseDate) {
       return toast.warning("Selecione uma data.");
     }
 
-    const parsedDate = new Date(date + "T00:00:00");
+    const parsedDate = new Date(expenseDate + "T00:00:00");
 
     if (isNaN(parsedDate.getTime())) {
       return toast.warning("Data inválida.");
@@ -64,7 +64,7 @@ const AddExpenseModal = ({ onClose, categoryId }: AddExpenseModalProps) => {
       await mutateAsync({
         amount,
         paymentMethod,
-        date: parsedDate,
+        createdAt: parsedDate,
         description: description.trim() || undefined,
       });
 
@@ -106,7 +106,7 @@ const AddExpenseModal = ({ onClose, categoryId }: AddExpenseModalProps) => {
 
       <PaymentMethodSelect value={paymentMethod} onChange={setPaymentMethod} />
 
-      <DateInput value={date} onChange={setDate} />
+      <DateInput value={expenseDate} onChange={setExpenseDate} />
 
       <Button
         loading={isPending}
