@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../hooks/user/useUser";
 
 const ProtectedLayout = () => {
   const { user } = useUser();

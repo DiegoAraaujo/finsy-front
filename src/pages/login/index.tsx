@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -7,7 +7,7 @@ import TextInput from "../../components/TextInput";
 import PasswordInput from "../../components/PasswordInput";
 import Button from "../../components/Button";
 import { login } from "../../services/UserService";
-import { useUser } from "../../hooks/useUser";
+import { useUser } from "../../hooks/user/useUser";
 import { setAccessToken } from "../../utils/auth";
 
 const Login = () => {
