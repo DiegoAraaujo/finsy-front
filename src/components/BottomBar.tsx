@@ -19,7 +19,7 @@ const BottomBar = () => {
       </Link>
 
       <Link
-        to="/"
+        to="/dashboard"
         className="flex flex-col items-center rounded-2xl px-4 py-1 font-semibold hover:bg-blue-100 hover:text-blue-700"
       >
         <i className="bi bi-bar-chart-line" />
