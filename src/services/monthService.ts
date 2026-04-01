@@ -81,3 +81,19 @@ export const getAllMonths = async () => {
     }
   }
 };
+
+export const getMonthById = async (id: number) => {
+  try {
+    const { data } = await api.get(`/months/${id}`);
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const status = error.response?.status;
+
+      if (status === 404) {
+        throw new Error("Não encontramos os registros para o mês selecionado.");
+      }
+    }
+    throw new Error("Ocorreu um erro ao tentar buscar o  mês");
+  }
+};
