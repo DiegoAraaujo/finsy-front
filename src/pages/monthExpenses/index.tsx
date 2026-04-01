@@ -7,9 +7,11 @@ import ErrorState from "../../components/ErrorState";
 
 import ExpenseList from "./components/ExpenseList";
 import MonthlyFinanceChart from "./components/FinanceChart";
-import Header from "./components/Header";
+import Header from "../../components/Header";
 import SummaryItemCard from "./components/SummaryItemCard";
 import BudgetSummary from "../../components/BudgetSummary";
+import { useGetMonthById } from "../../hooks/month/useGetMonthById";
+import { formatMonthYear } from "../../utils/formatMonthName";
 
 const MonthExpenses = () => {
   const { id } = useParams();
@@ -17,6 +19,13 @@ const MonthExpenses = () => {
   const monthId = Number(id);
 
   const isCurrentMonth = location.state?.isCurrentMonth ?? false;
+
+  const {
+    data: month,
+    isLoading: isLoadingMonth,
+    isError: isErrorMont,
+  } = useGetMonthById(monthId);
+
   const {
     data: categories,
     isLoading: isLoadingCategories,
@@ -29,13 +38,7 @@ const MonthExpenses = () => {
     isError: isErrorExp,
   } = useGetExpensesByMonthId(monthId);
 
-  const salary =
-    categories?.reduce((acc, cat) => acc + (cat.spendingLimit || 0), 0) || 0;
-
-  const totalExpenses =
-    expenses?.reduce((acc, exp) => acc + (exp.amount || 0), 0) || 0;
-
-  if (isLoadingCategories || isLoadingExpenses) {
+  if (isLoadingCategories || isLoadingExpenses || isLoadingMonth) {
     return (
       <div className="flex h-full items-center justify-center">
         Carregando...
@@ -43,18 +46,26 @@ const MonthExpenses = () => {
     );
   }
 
-  if (isErrorCats || isErrorExp) {
+  if (isErrorCats || isErrorExp || isErrorMont || !month) {
     return (
       <ErrorState message="Houve um problema ao carregar os dados do mês." />
     );
   }
+  const salary = month.salary ?? 0;
+  const totalExpenses =
+    expenses?.reduce((acc, exp) => acc + (exp.amount || 0), 0) || 0;
+
   const hasCategories = (categories?.length ?? 0) > 0;
   const hasExpenses = (expenses?.length ?? 0) > 0;
 
   return (
     <div className="flex h-full flex-col">
       <div className="relative h-64">
-        <Header />
+        <Header
+          title={formatMonthYear(month.month, month.year)}
+          subtitle="Detalhes do mês"
+          backTo="historic"
+        />
         <BudgetSummary
           salary={salary}
           expenses={totalExpenses}
