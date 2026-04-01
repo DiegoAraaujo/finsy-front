@@ -7,4 +7,5 @@ export interface Expense {
   amount: number;
   paymentMethod: PaymentMethod;
   description?: string;
+  createdAt: Date | string;
 }

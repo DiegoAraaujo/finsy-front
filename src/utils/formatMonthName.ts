@@ -10,3 +10,11 @@ export const formatMonthYear = (month: number, year: number): string => {
 
   return `${capitalizedMonth} de ${year}`;
 };
+
+export const formatFullDate = (date: Date | string): string => {
+  const d = typeof date === "string" ? new Date(date) : date;
+
+  if (isNaN(d.getTime())) return "Data inválida";
+
+  return new Intl.DateTimeFormat("pt-BR").format(d);
+};

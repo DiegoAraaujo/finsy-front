@@ -1,13 +1,15 @@
 import type { PaymentMethod } from "../../../types/paymentMethod";
 
 import { formatCurrency } from "../../../utils/formatCurrency";
+import { formatFullDate } from "../../../utils/formatMonthName";
 
 interface ExpenseItem {
   amount: number;
   paymentMethod: PaymentMethod;
   description?: string;
-  onDelete: () => void;
   isPending: boolean;
+  expenseDate: Date | string;
+  onDelete: () => void;
 }
 const paymentMethodLabel: Record<PaymentMethod, string> = {
   CASH: "Dinheiro",
@@ -23,6 +25,7 @@ const ExpenseItem = ({
   description,
   onDelete,
   isPending,
+  expenseDate,
 }: ExpenseItem) => {
   return (
     <div className="flex justify-between rounded-t-lg border-t border-gray-300 py-4">
@@ -35,6 +38,9 @@ const ExpenseItem = ({
         </span>
         <span className="flex items-center gap-4 text-sm font-medium text-gray-500">
           {description && <p>{description}</p>}
+        </span>
+        <span className="text-xs font-medium text-gray-500">
+          {formatFullDate(expenseDate)}
         </span>
       </div>
       <button

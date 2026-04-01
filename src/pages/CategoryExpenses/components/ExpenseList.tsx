@@ -39,6 +39,7 @@ const ExpenseList = ({
               amount={expense.amount}
               description={expense.description}
               paymentMethod={expense.paymentMethod}
+              expenseDate={expense.createdAt}
               onDelete={() => deleteExpense(expense.id)}
               isPending={isPending}
             />
