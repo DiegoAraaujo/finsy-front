@@ -8,7 +8,7 @@ interface ExpenseListProps {
 const ExpenseList = ({ expenses }: ExpenseListProps) => {
   return (
     <div className="z-10 flex flex-1 flex-col gap-4">
-      <p className="text-left text-xs font-bold text-gray-500">
+      <p className="text-left text-xs font-bold text-secundary">
         Quantidade de Gastos ({expenses.length})
       </p>
 

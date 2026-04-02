@@ -28,25 +28,25 @@ const ExpenseItem = ({
   expenseDate,
 }: ExpenseItem) => {
   return (
-    <div className="flex justify-between rounded-t-lg border-t border-gray-300 py-4">
+    <div className="border-surface-subtle flex justify-between rounded-t-lg border-t py-4">
       <div className="flex flex-col gap-1">
         <span className="flex items-center gap-4">
           <p className="font-semibold">{formatCurrency(amount)}</p>
-          <p className="text-sm font-medium text-gray-500">
+          <p className="text-secundary text-sm font-medium">
             {paymentMethodLabel[paymentMethod]}
           </p>
         </span>
-        <span className="flex items-center gap-4 text-sm font-medium text-gray-500">
+        <span className="text-secundary flex items-center gap-4 text-sm font-medium">
           {description && <p>{description}</p>}
         </span>
-        <span className="text-xs font-medium text-gray-500">
+        <span className="text-secundary text-xs font-medium">
           {formatFullDate(expenseDate)}
         </span>
       </div>
       <button
         disabled={isPending}
         onClick={onDelete}
-        className="cursor-pointer text-gray-500 transition-all duration-300 hover:-translate-y-0.5 hover:text-red-600"
+        className="text-secundary hover:text-danger cursor-pointer transition-all duration-300 hover:-translate-y-0.5"
       >
         <i className="bi bi-trash" />
       </button>

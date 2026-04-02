@@ -23,17 +23,17 @@ const ExpenseItem = ({
   expenseDate,
 }: ExpenseItemProps) => {
   return (
-    <div className="flex flex-col gap-1 rounded-t-lg border-t border-gray-300 py-4">
+    <div className="border-surface-subtle flex flex-col gap-1 rounded-t-lg border-t py-4">
       <span className="flex items-center gap-4">
         <p className="font-semibold">{formatCurrency(amount)}</p>
-        <p className="text-sm font-medium text-gray-500">
+        <p className="text-secundary text-sm font-medium">
           {paymentMethodLabel[paymentMethod]}
         </p>
       </span>
-      <span className="flex items-center gap-4 text-sm font-medium text-gray-500">
+      <span className="text-secundary flex items-center gap-4 text-sm font-medium">
         {description && <p>{description}</p>}
       </span>
-      <span className="text-xs font-medium text-gray-500">
+      <span className="text-secundary text-xs font-medium">
         {formatFullDate(expenseDate)}
       </span>
     </div>

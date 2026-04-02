@@ -72,10 +72,10 @@ const MonthGate = () => {
 
       <div className="flex flex-col items-center">
         <p className="text-xl font-bold">Novo Mês!</p>
-        <p className="text-gray-500">{MONTHS[currentMonthIndex]}</p>
+        <p className="text-secundary">{MONTHS[currentMonthIndex]}</p>
       </div>
 
-      <p className="text-gray-500">como deseja configurar esse mês?</p>
+      <p className="text-secundary">como deseja configurar esse mês?</p>
 
       <div className="flex flex-col gap-4">
         <MonthOptionCard

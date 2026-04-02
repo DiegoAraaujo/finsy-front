@@ -25,7 +25,7 @@ const CategoryCard = ({
   return (
     <Link
       to={`/category/${categoryId}`}
-      className="group flex cursor-pointer flex-col gap-4 rounded-2xl border-t border-gray-200 bg-white p-4 transition-all duration-300 hover:bg-gray-100"
+      className="group border-surface-subtle bg-background flex cursor-pointer flex-col gap-4 rounded-2xl border-t p-4 transition-all duration-300 hover:-translate-y-0.5"
     >
       <div className="flex justify-between">
         <div>
@@ -36,21 +36,21 @@ const CategoryCard = ({
           <p
             className={`border ${
               isOverBudget
-                ? "border-red-600 bg-red-50 text-red-600"
-                : "border-emerald-600 bg-emerald-50 text-emerald-600"
+                ? "border-danger text-danger bg-danger/10"
+                : "border-success bg-success/10 text-success"
             } flex items-center justify-center rounded-lg px-2 text-xs font-bold`}
           >
             {isOverBudget ? "Acima" : "OK"}
           </p>
 
-          <i className="bi bi-chevron-right text-sm text-gray-500 transition-all duration-300 group-hover:translate-x-1 group-hover:text-blue-600" />
+          <i className="bi bi-chevron-right group-hover:text-primary text-secundary text-sm transition-all duration-300 group-hover:translate-x-1" />
         </div>
       </div>
 
-      <div className="h-2 w-full rounded-2xl bg-gray-200">
+      <div className="bg-surface-subtle h-2 w-full rounded-2xl">
         <div
           className={`h-full ${
-            isOverBudget ? "bg-red-600" : "bg-emerald-600"
+            isOverBudget ? "bg-danger" : "bg-success"
           } rounded-2xl`}
           style={{ width: `${progress}%` }}
         />
@@ -62,7 +62,7 @@ const CategoryCard = ({
         <p>
           {isOverBudget ? "Excedido:" : isZero ? "Sem saldo" : "Resta:"}{" "}
           {!isZero && (
-            <span className={isOverBudget ? "text-red-600" : "text-gray-900"}>
+            <span className={isOverBudget ? "text-danger" : "text-base"}>
               {formatCurrency(Math.abs(remainingAmount))}
             </span>
           )}

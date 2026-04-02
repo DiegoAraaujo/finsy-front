@@ -13,8 +13,8 @@ const Button = ({
   label,
   type = "button",
   onClick,
-  textColor = "white",
-  backgroundColor = "blue-600",
+  textColor = "text-inverse",
+  backgroundColor = "bg-button",
   loading = false,
   disabled = false,
   loadingLabel = "carregando...",
@@ -27,7 +27,7 @@ const Button = ({
       type={type}
       onClick={onClick}
       aria-busy={loading}
-      className={`w-full cursor-pointer rounded-2xl p-2 font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md disabled:translate-none disabled:cursor-not-allowed disabled:opacity-60 bg-${backgroundColor} text-${textColor}`}
+      className={`w-full cursor-pointer rounded-2xl p-2 font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md disabled:translate-none disabled:cursor-not-allowed disabled:opacity-60 ${backgroundColor} ${textColor}`}
     >
       {loading ? loadingLabel : label}
     </button>

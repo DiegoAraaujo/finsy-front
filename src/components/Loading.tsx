@@ -7,7 +7,7 @@ const Loading = () => {
         alt="carregando"
         className="aspect-square w-48 animate-pulse md:w-62"
       />
-      <p className="text-gray-500">
+      <p className="text-secundary">
         Carregando <span className="loading"></span>
       </p>
     </div>

@@ -19,13 +19,13 @@ const PasswordInput = ({
 
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="font-medium text-gray-500">
+      <label htmlFor={id} className="text-secundary font-medium">
         {label}
       </label>
       <div
-        className={`${isFocused ? "border-blue-400" : "border-gray-200"} flex gap-4 rounded-2xl border bg-white p-2`}
+        className={`${isFocused ? "border-primary/70" : "border-surface-subtle"} bg-background flex gap-4 rounded-2xl border p-2`}
       >
-        <i className="bi bi-lock text-blue-400"></i>
+        <i className="bi bi-lock text-primary"></i>
         <input
           onChange={(e) => onChange(e.target.value)}
           value={value}
@@ -42,7 +42,7 @@ const PasswordInput = ({
           onClick={() => setVisiblePassword(!visiblePassword)}
         >
           <i
-            className={`${visiblePassword ? "bi bi-eye-slash" : "bi bi-eye"} text-gray-500`}
+            className={`${visiblePassword ? "bi bi-eye-slash" : "bi bi-eye"} text-secundary`}
           />
         </button>
       </div>

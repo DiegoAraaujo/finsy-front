@@ -12,10 +12,10 @@ const AmountInput = ({ value, onChange }: AmountInputProps) => {
 
   return (
     <div>
-      <label className="text-sm font-medium text-gray-500">Valor</label>
+      <label className="text-secundary text-sm font-medium">Valor</label>
 
-      <div className="flex w-full justify-center gap-4 rounded-2xl border border-gray-300 p-2">
-        <p className="text-sm text-gray-500">R$</p>
+      <div className="border-surface-subtle flex w-full justify-center gap-4 rounded-2xl border p-2">
+        <p className="text-secundary text-sm">R$</p>
         <input
           onChange={handleChange}
           value={value.toFixed(2)}

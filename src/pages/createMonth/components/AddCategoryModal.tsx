@@ -38,12 +38,12 @@ const AddCategoryModal = ({
     <form
       onClick={(e) => e.stopPropagation()}
       onSubmit={handleSubmit}
-      className="relative flex w-full max-w-100 flex-col gap-3 rounded-2xl bg-white p-4"
+      className="bg-background relative flex w-full max-w-100 flex-col gap-3 rounded-2xl p-4"
     >
       <button
         onClick={onClose}
         type="button"
-        className="absolute top-4 right-4 cursor-pointer text-gray-500 transition-all duration-300 hover:-translate-y-0.5 hover:text-red-500"
+        className="text-secundary hover:text-danger absolute top-4 right-4 cursor-pointer transition-all duration-300 hover:-translate-y-0.5"
       >
         <i className="bi bi-x-lg" />
       </button>
@@ -59,14 +59,14 @@ const AddCategoryModal = ({
 
       <SuggestedCategories onSelectCategory={setCategoryName} />
 
-      <p className="text-gray-500">Destinar Valor</p>
+      <p className="text-secundary">Destinar Valor</p>
       <p
-        className={`${availableBudget > 0 ? "text-green-600" : "text-red-600"} rounded-2xl bg-gray-100 p-4 text-sm`}
+        className={`${availableBudget > 0 ? "text-success" : "text-danger"} bg-surface-subtle rounded-2xl p-4 text-sm`}
       >
         Disponivel: {formatCurrency(availableBudget)}
       </p>
-      <div className="flex w-full justify-center gap-4 rounded-2xl border border-gray-300 p-4">
-        <p className="text-xl text-gray-500">R$</p>
+      <div className="border-surface-subtle flex w-full justify-center gap-4 rounded-2xl border p-4">
+        <p className="text-secundary text-xl">R$</p>
         <input
           inputMode="numeric"
           value={spendingLimit.toFixed(2)}

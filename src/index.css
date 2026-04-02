@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #1447e6;
+  --color-secundary: #6a7282;
+  --color-base: #101828;
+  --color-inverse: #ffffff;
+  
+  --color-button: #155dfc;
+  --color-surface-subtle: #e5e7eb;
+  --color-danger: #f02424;
+  --color-success: #059669;
+  --color-background: white;
+}
+
 .loading::after {
   content: "";
   animation: dots 2s infinite;
@@ -38,7 +51,9 @@
 }
 
 @keyframes bounce {
-  0%, 80%, 100% {
+  0%,
+  80%,
+  100% {
     transform: translateY(0);
   }
   40% {
@@ -61,6 +76,6 @@ input[type="number"] {
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none;  
-  scrollbar-width: none;   
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

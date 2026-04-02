@@ -7,7 +7,6 @@ import { useGetExpensesByCategoryId } from "../../hooks/expense/useGetExpensesBy
 import Loading from "../../components/Loading";
 
 import AddExpenseModal from "./components/AddExpenseModal";
-// import BudgetSummary from "./components/BudgetSummary";
 import ExpenseList from "./components/ExpenseList";
 import Header from "../../components/Header";
 import SummaryItemCard from "./components/SummaryItemCard";
@@ -58,31 +57,27 @@ const CategoryExpenses = () => {
         </div>
       )}
       <div className="relative h-64">
-        <Header title={category.name} backTo="home" subtitle="Detalhes da Categoria" />
+        <Header
+          title={category.name}
+          backTo="home"
+          subtitle="Detalhes da Categoria"
+        />
         <BudgetSummary
           salary={currentBalance}
           expenses={totalExpenses}
           isCurrentMonth={true}
         />
       </div>
-      <div className="relative z-10 flex justify-around gap-4 border-b border-gray-200 py-2">
-        <SummaryItemCard
-          label="Reservado"
-          value={category.spendingLimit}
-          textColor="text-gray-900"
-        />
-        <SummaryItemCard
-          label="gastos"
-          value={totalExpenses}
-          textColor="text-gray-900"
-        />
+      <div className="border-surface-subtle relative z-10 flex justify-around gap-4 border-b py-2">
+        <SummaryItemCard label="Reservado" value={category.spendingLimit} />
+        <SummaryItemCard label="gastos" value={totalExpenses} />
         <SummaryItemCard
           label="Saldo"
           value={category.spendingLimit - totalExpenses}
           textColor={
             category.spendingLimit >= totalExpenses
-              ? "text-emerald-600"
-              : "text-red-600"
+              ? "text-success"
+              : "text-danger"
           }
         />
       </div>

@@ -13,12 +13,12 @@ const Header = ({ title, subtitle, backTo }: HeaderProps) => {
         to={`/${backTo}`}
         className="cursor-pointer transition-transform duration-300 hover:-translate-x-0.5"
       >
-        <i className="bi bi-arrow-left text-xl text-gray-400" />
+        <i className="bi bi-arrow-left text-secundary text-xl" />
       </Link>
       <span>
         <p className="text-xl font-bold">{title}</p>
         {subtitle && (
-          <p className="text-sm font-bold text-gray-400">{subtitle}</p>
+          <p className="text-secundary text-sm font-bold">{subtitle}</p>
         )}
       </span>
     </header>

@@ -11,7 +11,7 @@ const ErrorState = ({
 }: ErrorStateProps) => {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-4 p-6 text-center">
-      <p className="text-lg font-semibold text-red-600">{message}</p>
+      <p className="text-lg font-semibold text-danger">{message}</p>
 
       {onRetry && (
         <Button label="Tentar novamente" onClick={onRetry} type="button" />

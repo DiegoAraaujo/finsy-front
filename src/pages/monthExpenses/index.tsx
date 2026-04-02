@@ -73,16 +73,14 @@ const MonthExpenses = () => {
         />
       </div>
 
-      <div className="relative z-10 flex justify-around gap-4 border-b border-gray-200 py-2">
+      <div className="border-surface-subtle relative z-10 flex justify-around gap-4 border-b py-2">
         <SummaryItemCard
           label="Salário"
           value={salary}
-          textColor="text-gray-900"
         />
         <SummaryItemCard
           label="Gastos"
           value={totalExpenses}
-          textColor="text-gray-900"
         />
       </div>
 
@@ -96,10 +94,10 @@ const MonthExpenses = () => {
         </>
       ) : (
         <div className="flex flex-1 flex-col items-center justify-center gap-1 p-8 text-center">
-          <p className="font-medium text-gray-500">
+          <p className="font-medium text-secundary">
             Nenhuma atividade registrada para este mês.
           </p>
-          <span className="text-xs text-gray-400">
+          <span className="text-xs text-secundary">
             Cadastre categorias e despesas para visualizar o resumo.
           </span>
         </div>

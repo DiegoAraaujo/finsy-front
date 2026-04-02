@@ -18,7 +18,7 @@ const DateInput = ({ value, onChange }: Props) => {
       min={minDate}
       max={maxDate}
       onChange={(e) => onChange(e.target.value)}
-      className="rounded-2xl border border-gray-300 p-2 text-sm focus:outline-blue-500"
+      className="border-surface-subtle  rounded-2xl border p-2 text-sm"
     />
   );
 };

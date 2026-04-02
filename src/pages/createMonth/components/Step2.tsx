@@ -54,7 +54,7 @@ const Step2 = ({
 
       <div>
         <p className="text-center text-xl font-semibold">Divida seu salário</p>
-        <p className="text-sm text-gray-500">
+        <p className="text-secundary text-sm">
           Quanto você quer destinar para cada área?
         </p>
       </div>
@@ -68,8 +68,8 @@ const Step2 = ({
 
       <Button
         label="Adicionar Categoria"
-        backgroundColor="blue-100"
-        textColor="blue-600"
+        backgroundColor="bg-primary/10"
+        textColor="text-primary"
         onClick={() => setIsAddCategoryModalOpen(true)}
         disabled={availableBudget <= 0}
       />

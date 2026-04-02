@@ -89,14 +89,14 @@ const Login = () => {
       </form>
 
       <div className="flex w-full items-center gap-2">
-        <span className="h-px flex-1 bg-gray-200" />
-        <p className="text-xs text-gray-500 sm:text-sm">OU</p>
-        <span className="h-px flex-1 bg-gray-200" />
+        <span className="bg-surface-subtle h-px flex-1" />
+        <p className="text-secundary text-xs sm:text-sm">OU</p>
+        <span className="bg-surface-subtle h-px flex-1" />
       </div>
 
-      <p className="text-sm text-gray-500">
+      <p className="text-sm text-secundary">
         Não tem uma conta?{" "}
-        <span className="cursor-pointer font-medium text-blue-600">
+        <span className="text-primary cursor-pointer font-medium">
           Criar conta
         </span>
       </p>

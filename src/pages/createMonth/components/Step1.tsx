@@ -22,15 +22,15 @@ const Step1 = ({ salary, onSalaryChange, onStepChange }: Step1Props) => {
     <>
       <div>
         <p className="text-xl font-semibold">Qual é o seu salário mensal?</p>
-        <p className="text-sm text-gray-500">
+        <p className="text-secundary text-sm">
           considere o valor líquido(o que cai na conta)
         </p>
       </div>
       <form
-        className="flex w-full justify-center gap-4 rounded-2xl border border-gray-300 p-4"
+        className="border-surface-subtle flex w-full justify-center gap-4 rounded-2xl border p-4"
         onSubmit={handleSubmit}
       >
-        <p className="text-xl text-gray-500">R$</p>
+        <p className="text-secundary text-xl">R$</p>
         <input
           inputMode="numeric"
           aria-label="Salário mensal"
@@ -40,11 +40,7 @@ const Step1 = ({ salary, onSalaryChange, onStepChange }: Step1Props) => {
           type="text"
           className="flex-1 text-center text-xl focus:outline-0"
         />
-        <Button
-          type="submit"
-          label="Continuar"
-          disabled={salary <= 0}
-        />
+        <Button type="submit" label="Continuar" disabled={salary <= 0} />
       </form>
     </>
   );

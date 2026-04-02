@@ -8,7 +8,7 @@ interface CategoriesSectionProps {
 const CategoriesSection = ({ categories }: CategoriesSectionProps) => {
   return (
     <div className="relative z-10 flex flex-1 flex-col gap-4">
-      <p className="text-sm font-bold text-gray-500">Categorias</p>
+      <p className="text-secundary text-sm font-bold">Categorias</p>
 
       <div className="flex flex-col gap-4">
         {categories.map((c) => {

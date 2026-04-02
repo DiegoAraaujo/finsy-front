@@ -81,12 +81,12 @@ const AddExpenseModal = ({ onClose, categoryId }: AddExpenseModalProps) => {
     <form
       onSubmit={handleCreateExpense}
       onClick={(e) => e.stopPropagation()}
-      className="relative flex w-full max-w-100 flex-col gap-3 rounded-2xl bg-white p-4"
+      className="bg-background relative flex w-full max-w-100 flex-col gap-3 rounded-2xl p-4"
     >
       <button
         onClick={onClose}
         type="button"
-        className="absolute top-4 right-4 cursor-pointer text-gray-500 transition-all duration-300 hover:-translate-y-0.5 hover:text-red-500"
+        className="text-secundary hover:text-danger absolute top-4 right-4 cursor-pointer transition-all duration-300 hover:-translate-y-0.5"
       >
         <i className="bi bi-x-lg" />
       </button>

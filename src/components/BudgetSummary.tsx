@@ -26,11 +26,11 @@ const BudgetSummary = ({
   return (
     <div className="relative z-10 flex flex-col items-center gap-4 py-8">
       <div className="flex flex-col gap-1">
-        <p className="text-center font-semibold text-gray-400">{getLabel()}</p>
+        <p className="text-secundary text-center font-semibold">{getLabel()}</p>
 
         <p
           className={`text-5xl font-bold transition-all duration-300 ${
-            isOutOfMoney ? "text-red-600" : "text-blue-700"
+            isOutOfMoney ? "text-danger" : "text-primary"
           }`}
         >
           {formatCurrency(displayRemaining)}
@@ -38,10 +38,10 @@ const BudgetSummary = ({
       </div>
 
       <div className="flex w-full max-w-48 flex-col gap-1">
-        <div className="h-1.5 w-full overflow-hidden rounded-2xl bg-gray-200">
+        <div className="bg-surface-subtle h-1.5 w-full overflow-hidden rounded-2xl">
           <div
             className={`h-full transition-all duration-500 ${
-              isOutOfMoney ? "bg-red-600" : "bg-blue-600"
+              isOutOfMoney ? "bg-danger" : "bg-primary"
             } rounded-2xl`}
             style={{
               width: `${progress}%`,
@@ -49,7 +49,7 @@ const BudgetSummary = ({
             }}
           ></div>
         </div>
-        <p className="text-center text-xs text-gray-400">
+        <p className="text-secundary text-center text-xs">
           {progress > 0 && progress < 1
             ? progress.toFixed(1)
             : Math.round(progress)}
