@@ -5,12 +5,24 @@
   --color-secundary: #6a7282;
   --color-base: #101828;
   --color-inverse: #ffffff;
-  
+
   --color-button: #155dfc;
   --color-surface-subtle: #e5e7eb;
   --color-danger: #f02424;
   --color-success: #059669;
   --color-background: white;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./assets/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  font-family: "Montserrat", Arial, sans-seri;
 }
 
 .loading::after {
