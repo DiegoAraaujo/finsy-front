@@ -1,6 +1,26 @@
 import api from "./api";
 import { AxiosError } from "axios";
 
+export const createUser = async (
+  email: string,
+  password: string,
+  name: string,
+) => {
+  try {
+    const { data } = await api.post("/users", { email, password, name });
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const status = error.response?.status;
+      if (status === 409) {
+        throw new Error("Este Email já esta em uso!");
+      }
+    }
+
+    throw new Error("Não foi possível realizar cadastro");
+  }
+};
+
 export const login = async (email: string, password: string) => {
   try {
     const { data } = await api.post("/users/login", { email, password });
