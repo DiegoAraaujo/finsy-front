@@ -53,8 +53,8 @@ const Step2 = ({
       )}
 
       <div>
-        <p className="text-center text-xl font-semibold">Divida seu salário</p>
-        <p className="text-secundary text-sm">
+        <p className="text-center font-bold">Divida seu salário</p>
+        <p className="text-secundary text-xs">
           Quanto você quer destinar para cada área?
         </p>
       </div>
@@ -67,6 +67,7 @@ const Step2 = ({
       />
 
       <Button
+        type="button"
         label="Adicionar Categoria"
         backgroundColor="bg-primary/10"
         textColor="text-primary"
@@ -75,6 +76,7 @@ const Step2 = ({
       />
       <Button
         onClick={onCreateMonth}
+        type="submit"
         loading={isCreatingMonth}
         loadingLabel="Preparando seu mês..."
         label={

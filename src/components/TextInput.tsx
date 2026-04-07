@@ -25,7 +25,7 @@ const TextInput = ({
 }: TextInputProps) => {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-secundary font-medium">
+      <label htmlFor={id} className="text-secundary text-sm font-medium">
         {label}
       </label>
 

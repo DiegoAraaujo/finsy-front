@@ -9,9 +9,9 @@ import Loading from "../../components/Loading";
 import AddExpenseModal from "./components/AddExpenseModal";
 import ExpenseList from "./components/ExpenseList";
 import Header from "../../components/Header";
-import SummaryItemCard from "./components/SummaryItemCard";
 import ErrorState from "../../components/ErrorState";
 import BudgetSummary from "../../components/BudgetSummary";
+import SummaryItemCard from "../../components/SummaryItemCard";
 
 const CategoryExpenses = () => {
   const [addExpenseModalOpen, setIsAddExpenseModalOpen] =
@@ -41,7 +41,7 @@ const CategoryExpenses = () => {
   const currentBalance = category.spendingLimit - totalExpenses;
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full flex-col relative">
       {addExpenseModalOpen && (
         <div
           aria-label="Modal para adicionar gasto"
@@ -56,18 +56,16 @@ const CategoryExpenses = () => {
           />
         </div>
       )}
-      <div className="relative h-64">
-        <Header
-          title={category.name}
-          backTo="home"
-          subtitle="Detalhes da Categoria"
-        />
-        <BudgetSummary
-          salary={currentBalance}
-          expenses={totalExpenses}
-          isCurrentMonth={true}
-        />
-      </div>
+      <Header
+        title={category.name}
+        backTo="home"
+        subtitle="Detalhes da Categoria"
+      />
+      <BudgetSummary
+        salary={currentBalance}
+        expenses={totalExpenses}
+        isCurrentMonth={true}
+      />
       <div className="border-surface-subtle relative z-10 flex justify-around gap-4 border-b py-2">
         <SummaryItemCard label="Reservado" value={category.spendingLimit} />
         <SummaryItemCard label="gastos" value={totalExpenses} />
@@ -81,7 +79,7 @@ const CategoryExpenses = () => {
           }
         />
       </div>
-
+     
       <div className="flex flex-1 flex-col gap-2 p-4">
         <ExpenseList
           expenses={expenses}

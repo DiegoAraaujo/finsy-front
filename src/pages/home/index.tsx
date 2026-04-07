@@ -6,7 +6,7 @@ import Loading from "../../components/Loading";
 import ErrorState from "../../components/ErrorState";
 
 import CategoriesSection from "./components/CategoriesSection";
-import SummaryItemCard from "./components/SummaryItemCard";
+import SummaryItemCard from "../../components/SummaryItemCard";
 import BudgetSummary from "../../components/BudgetSummary";
 
 const Home = () => {
@@ -27,13 +27,11 @@ const Home = () => {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="relative h-54">
-        <BudgetSummary
-          salary={currentData.month.salary}
-          expenses={totalExpenses}
-          isCurrentMonth={true}
-        />
-      </div>
+      <BudgetSummary
+        salary={currentData.month.salary}
+        expenses={totalExpenses}
+        isCurrentMonth={true}
+      />
 
       <div className="border-surface-subtle flex justify-around gap-4 border-b py-2">
         <SummaryItemCard label="Salário" value={currentData.month.salary} />

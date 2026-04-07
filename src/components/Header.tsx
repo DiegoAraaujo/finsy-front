@@ -16,7 +16,7 @@ const Header = ({ title, subtitle, backTo }: HeaderProps) => {
         <i className="bi bi-arrow-left text-secundary text-xl" />
       </Link>
       <span>
-        <p className="text-xl font-bold">{title}</p>
+        <p className="font-bold">{title}</p>
         {subtitle && (
           <p className="text-secundary text-sm font-bold">{subtitle}</p>
         )}

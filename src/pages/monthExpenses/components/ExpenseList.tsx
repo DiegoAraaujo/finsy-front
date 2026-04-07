@@ -1,5 +1,5 @@
 import type { Expense } from "../../../types/expense";
-import ExpenseItem from "./ExpenseItem";
+import ExpenseItem from "../../CategoryExpenses/components/ExpenseItem";
 
 interface ExpenseListProps {
   expenses: Expense[];
@@ -8,7 +8,7 @@ interface ExpenseListProps {
 const ExpenseList = ({ expenses }: ExpenseListProps) => {
   return (
     <div className="z-10 flex flex-1 flex-col gap-4">
-      <p className="text-left text-xs font-bold text-secundary">
+      <p className="text-secundary text-left text-sm font-bold">
         Quantidade de Gastos ({expenses.length})
       </p>
 

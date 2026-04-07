@@ -13,22 +13,22 @@ const BudgetSummary = ({ salary, totalAllocated }: BudgetSummaryProps) => {
 
   return (
     <div className="border-surface-subtle bg-surface-subtle/40 flex w-full flex-col gap-4 rounded-2xl border p-4">
-      <div className="flex items-center">
-        <div className="flex-1 gap-1">
-          <p className="text-secundary text-sm">
-            {isOverBudget
-              ? "Orçamento ultrapassado"
-              : "Ainda disponivel para distribuir"}
-          </p>
+      <div className="flex flex-1 flex-col gap-1">
+        <p className="text-secundary text-xs sm:text-sm">
+          {isOverBudget
+            ? "Orçamento ultrapassado"
+            : "Ainda disponivel para distribuir"}
+        </p>
+        <div className="flex items-end gap-2">
           <p
-            className={`${isOverBudget ? "text-danger" : "text-success"} text-2xl font-bold`}
+            className={`${isOverBudget ? "text-danger" : "text-success"} text-lg font-bold sm:text-xl`}
           >
             {formatCurrency(remaining)}
           </p>
+          <p className="text-secundary text-[10px] sm:text-xs">
+            de {formatCurrency(Number(salary))}
+          </p>
         </div>
-        <p className="text-secundary text-xs">
-          de {formatCurrency(Number(salary))}
-        </p>
       </div>
       <div className="bg-surface-subtle h-1.5 w-full rounded-2xl">
         <div

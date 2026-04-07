@@ -67,15 +67,16 @@ const MonthGate = () => {
   if (loadingLatest) return <Loading />;
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-3">
+    <div className="flex h-full w-full flex-col items-center gap-4 py-8">
       <p className="animate-bounce text-4xl">🗓️</p>
 
       <div className="flex flex-col items-center">
-        <p className="text-xl font-bold">Novo Mês!</p>
-        <p className="text-secundary">{MONTHS[currentMonthIndex]}</p>
+        <p className="font-bold">Novo Mês!</p>
+        <p className="text-secundary text-sm">{MONTHS[currentMonthIndex]}</p>
+        <p className="text-secundary text-sm">
+          como deseja configurar esse mês?
+        </p>
       </div>
-
-      <p className="text-secundary">como deseja configurar esse mês?</p>
 
       <div className="flex flex-col gap-4">
         <MonthOptionCard

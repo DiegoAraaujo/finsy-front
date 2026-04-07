@@ -91,7 +91,7 @@ const AddExpenseModal = ({ onClose, categoryId }: AddExpenseModalProps) => {
         <i className="bi bi-x-lg" />
       </button>
 
-      <p className="text-xl font-bold">Registrar Gasto</p>
+      <p className="font-bold">Registrar Gasto</p>
 
       <AmountInput value={amount} onChange={setAmount} />
 

@@ -23,7 +23,7 @@ const BudgetCategoryItem = ({
           <i className="bi bi-trash" />
         </button>
       </div>
-      <p className="text-center text-xl focus:outline-0">
+      <p className="text-center sm:text-[16px] text-sm focus:outline-0">
         {formatCurrency(category.spendingLimit)}
       </p>
     </div>

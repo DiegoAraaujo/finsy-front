@@ -1,4 +1,4 @@
-import { formatCurrency } from "../../../utils/formatCurrency";
+import { formatCurrency } from "../utils/formatCurrency";
 
 interface SummaryItemCardProps {
   label: string;
@@ -14,7 +14,7 @@ const SummaryItemCard = ({
   return (
     <div>
       <p className="text-secundary text-center text-xs font-medium">{label}</p>
-      <p className={` ${textColor} text-center text-lg font-bold`}>
+      <p className={` ${textColor} text-center font-bold sm:text-lg`}>
         {formatCurrency(value)}
       </p>
     </div>

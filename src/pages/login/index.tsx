@@ -90,11 +90,11 @@ const Login = () => {
 
       <div className="flex w-full items-center gap-2">
         <span className="bg-surface-subtle h-px flex-1" />
-        <p className="text-secundary text-xs sm:text-sm">OU</p>
+        <p className="text-secundary text-xs">OU</p>
         <span className="bg-surface-subtle h-px flex-1" />
       </div>
 
-      <p className="text-sm text-secundary">
+      <p className="text-secundary text-sm">
         Não tem uma conta?{" "}
         <span className="text-primary cursor-pointer font-medium">
           Criar conta

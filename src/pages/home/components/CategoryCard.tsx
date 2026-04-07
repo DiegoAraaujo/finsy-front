@@ -29,7 +29,7 @@ const CategoryCard = ({
     >
       <div className="flex justify-between">
         <div>
-          <p className="font-bold">{name}</p>
+          <p className="text-sm font-bold sm:text-[16px]">{name}</p>
         </div>
 
         <div className="flex gap-4">
@@ -38,7 +38,7 @@ const CategoryCard = ({
               isOverBudget
                 ? "border-danger text-danger bg-danger/10"
                 : "border-success bg-success/10 text-success"
-            } flex items-center justify-center rounded-lg px-2 text-xs font-bold`}
+            } flex items-center justify-center rounded-lg px-2 text-xs font-medium`}
           >
             {isOverBudget ? "Acima" : "OK"}
           </p>
@@ -56,7 +56,7 @@ const CategoryCard = ({
         />
       </div>
 
-      <div className="flex justify-between text-sm">
+      <div className="flex justify-between text-xs sm:text-sm">
         <p>Gasto: {formatCurrency(totalExpenses)}</p>
 
         <p>

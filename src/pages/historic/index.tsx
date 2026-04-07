@@ -23,10 +23,12 @@ const Historic = () => {
   return (
     <div className="flex h-full flex-col">
       <div className="relative z-10 flex flex-col items-center gap-2 py-8">
-        <p className="text-secundary text-center font-semibold">
+        <p className="text-primary text-4xl font-bold sm:text-5xl">
+          {allMonths.length}
+        </p>
+        <p className="text-secundary text-center text-sm font-semibold sm:text-[16px]">
           Meses registrados
         </p>
-        <p className="text-primary text-5xl font-bold">{allMonths.length}</p>
       </div>
 
       <div className="flex flex-1 flex-col gap-4 p-4">

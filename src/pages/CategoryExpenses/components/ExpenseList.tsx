@@ -18,34 +18,45 @@ const ExpenseList = ({
   const { mutate: deleteExpense, isPending } = useDeleteExpense(categoryId);
 
   return (
-    <div className="z-10 flex flex-1 flex-col gap-4">
-      <div className="grid grid-cols-2 items-center gap-4">
-        <p className="text-secundary text-left text-xs font-bold">
+    <div className="relative z-10 flex flex-1 flex-col gap-4">
+      <div className="flex justify-between gap-4">
+        <p className="text-secundary text-left text-[10px] font-bold sm:text-sm">
           Quantidade de Gastos ({expenses.length})
         </p>
         <button
           onClick={onRegisterExpense}
-          className="bg-button border-surface-subtle p-1.5 text-inverse cursor-pointer rounded-2xl border text-xs font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+          className="bg-button h-8 w-8 animate-bounce cursor-pointer rounded-full text-white sm:h-10 sm:w-10"
         >
-          Registrar Gasto
+          +
         </button>
       </div>
 
-      <div className="flex flex-col gap-2">
-        {expenses.map((expense) => {
-          return (
-            <ExpenseItem
-              key={expense.id}
-              amount={expense.amount}
-              description={expense.description}
-              paymentMethod={expense.paymentMethod}
-              expenseDate={expense.createdAt}
-              onDelete={() => deleteExpense(expense.id)}
-              isPending={isPending}
-            />
-          );
-        })}
-      </div>
+      {expenses.length > 0 ? (
+        <div className="flex flex-col gap-2">
+          {expenses.map((expense) => {
+            return (
+              <ExpenseItem
+                key={expense.id}
+                amount={expense.amount}
+                description={expense.description}
+                paymentMethod={expense.paymentMethod}
+                expenseDate={expense.createdAt}
+                onDelete={() => deleteExpense(expense.id)}
+                isPending={isPending}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div className="flex flex-1 flex-col items-center justify-center gap-1 p-8 text-center">
+          <p className="text-secundary text-sm font-bold sm:text-[16px]">
+            Nenhuma gasto registrado para este mês.
+          </p>
+          <span className="text-secundary text-xs font-medium">
+            resgistre gastos para visualizar o resumo.
+          </span>
+        </div>
+      )}
     </div>
   );
 };

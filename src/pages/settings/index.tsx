@@ -17,8 +17,8 @@ const Settings = () => {
   };
 
   return (
-    <div className="flex h-full flex-col gap-4">
-      <p className="text-2xl font-semibold">Configurações</p>
+    <div className="flex h-full flex-col gap-4 px-4 py-8">
+      <p className="font-bold">Configurações</p>
 
       <SettingItem
         description="nome e email"

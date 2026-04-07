@@ -47,7 +47,7 @@ const AddCategoryModal = ({
       >
         <i className="bi bi-x-lg" />
       </button>
-      <p className="text-xl font-bold">Nova Categoria</p>
+      <p className="font-bold">Nova Categoria</p>
       <TextInput
         value={categoryName}
         label="Nome"
@@ -59,20 +59,20 @@ const AddCategoryModal = ({
 
       <SuggestedCategories onSelectCategory={setCategoryName} />
 
-      <p className="text-secundary">Destinar Valor</p>
+      <p className="text-secundary text-sm">Destinar Valor</p>
       <p
-        className={`${availableBudget > 0 ? "text-success" : "text-danger"} bg-surface-subtle rounded-2xl p-4 text-sm`}
+        className={`${availableBudget > 0 ? "text-success" : "text-danger"} bg-surface-subtle rounded-2xl p-4 text-xs`}
       >
         Disponivel: {formatCurrency(availableBudget)}
       </p>
       <div className="border-surface-subtle flex w-full justify-center gap-4 rounded-2xl border p-4">
-        <p className="text-secundary text-xl">R$</p>
+        <p className="text-secundary text-sm">R$</p>
         <input
           inputMode="numeric"
           value={spendingLimit.toFixed(2)}
           type="text"
           onChange={handleChange}
-          className="flex-1 text-center text-xl focus:outline-0"
+          className="flex-1 text-center text-sm focus:outline-0"
         />
       </div>
       <Button

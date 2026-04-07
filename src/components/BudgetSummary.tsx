@@ -24,12 +24,14 @@ const BudgetSummary = ({
   };
 
   return (
-    <div className="relative z-10 flex flex-col items-center gap-4 py-8">
+    <div className="relative z-10 flex flex-col items-center gap-4 py-6 sm:py-8">
       <div className="flex flex-col gap-1">
-        <p className="text-secundary text-center font-semibold">{getLabel()}</p>
+        <p className="text-secundary text-center text-sm font-semibold sm:text-[16px]">
+          {getLabel()}
+        </p>
 
         <p
-          className={`text-5xl font-bold transition-all duration-300 ${
+          className={`text-center text-4xl font-bold transition-all duration-300 sm:text-5xl ${
             isOutOfMoney ? "text-danger" : "text-primary"
           }`}
         >

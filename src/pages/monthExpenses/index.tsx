@@ -8,10 +8,10 @@ import ErrorState from "../../components/ErrorState";
 import ExpenseList from "./components/ExpenseList";
 import MonthlyFinanceChart from "./components/FinanceChart";
 import Header from "../../components/Header";
-import SummaryItemCard from "./components/SummaryItemCard";
 import BudgetSummary from "../../components/BudgetSummary";
 import { useGetMonthById } from "../../hooks/month/useGetMonthById";
 import { formatMonthYear } from "../../utils/formatMonthName";
+import SummaryItemCard from "../../components/SummaryItemCard";
 
 const MonthExpenses = () => {
   const { id } = useParams();
@@ -60,28 +60,20 @@ const MonthExpenses = () => {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="relative h-64">
-        <Header
-          title={formatMonthYear(month.month, month.year)}
-          subtitle="Detalhes do mês"
-          backTo="historic"
-        />
-        <BudgetSummary
-          salary={salary}
-          expenses={totalExpenses}
-          isCurrentMonth={isCurrentMonth}
-        />
-      </div>
+      <Header
+        title={formatMonthYear(month.month, month.year)}
+        subtitle="Detalhes do mês"
+        backTo="historic"
+      />
+      <BudgetSummary
+        salary={salary}
+        expenses={totalExpenses}
+        isCurrentMonth={isCurrentMonth}
+      />
 
       <div className="border-surface-subtle relative z-10 flex justify-around gap-4 border-b py-2">
-        <SummaryItemCard
-          label="Salário"
-          value={salary}
-        />
-        <SummaryItemCard
-          label="Gastos"
-          value={totalExpenses}
-        />
+        <SummaryItemCard label="Salário" value={salary} />
+        <SummaryItemCard label="Gastos" value={totalExpenses} />
       </div>
 
       {hasCategories && hasExpenses ? (
@@ -94,10 +86,10 @@ const MonthExpenses = () => {
         </>
       ) : (
         <div className="flex flex-1 flex-col items-center justify-center gap-1 p-8 text-center">
-          <p className="font-medium text-secundary">
+          <p className="text-secundary font-bold">
             Nenhuma atividade registrada para este mês.
           </p>
-          <span className="text-xs text-secundary">
+          <span className="text-secundary text-xs font-medium">
             Cadastre categorias e despesas para visualizar o resumo.
           </span>
         </div>

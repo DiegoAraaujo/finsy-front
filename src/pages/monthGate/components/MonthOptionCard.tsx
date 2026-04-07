@@ -37,12 +37,14 @@ const MonthOptionCard = ({
         />
       )}
 
-      <div className="flex flex-1 flex-col items-start gap-0.5">
-        <p className="font-bold">{title}</p>
-        <p className="text-secundary text-xs sm:text-sm">{description}</p>
+      <div className="flex flex-1 flex-col items-start gap-1">
+        <p className="text-sm font-bold sm:text-[16px]">{title}</p>
+        <p className="text-secundary text-left text-xs sm:text-sm">
+          {description}
+        </p>
 
         {salary !== undefined && categories !== undefined && (
-          <div className="flex gap-4 text-xs sm:text-sm">
+          <div className="flex gap-4 text-left text-[10px] sm:text-xs">
             <p className="text-secundary">
               salário:{" "}
               <span className="text-base font-semibold">
@@ -59,7 +61,7 @@ const MonthOptionCard = ({
 
       <i
         aria-hidden="true"
-        className="bi bi-arrow-right group-hover:text-primary transition-all duration-300 group-hover:translate-x-1 sm:text-xl"
+        className="bi bi-arrow-right group-hover:text-primary hidden transition-all duration-300 group-hover:translate-x-1 sm:block sm:text-xl"
       />
     </button>
   );

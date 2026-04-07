@@ -9,7 +9,7 @@ const SuggestedCategories = ({
 }: SuggestedCategoriesProps) => {
   return (
     <>
-      <p className="text-secundary">Sugestões</p>
+      <p className="text-secundary text-sm">Sugestões</p>
       <div className="flex flex-wrap gap-2">
         {categorySuggestions.map((categoryName) => {
           return (

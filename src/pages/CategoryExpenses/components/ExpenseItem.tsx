@@ -7,9 +7,9 @@ interface ExpenseItem {
   amount: number;
   paymentMethod: PaymentMethod;
   description?: string;
-  isPending: boolean;
+  isPending?: boolean;
   expenseDate: Date | string;
-  onDelete: () => void;
+  onDelete?: () => void;
 }
 const paymentMethodLabel: Record<PaymentMethod, string> = {
   CASH: "Dinheiro",
@@ -24,24 +24,24 @@ const ExpenseItem = ({
   paymentMethod,
   description,
   onDelete,
-  isPending,
+  isPending = false,
   expenseDate,
 }: ExpenseItem) => {
   return (
     <div className="border-surface-subtle flex justify-between rounded-t-lg border-t py-4">
       <div className="flex flex-col gap-1">
-        <span className="flex items-center gap-4">
-          <p className="font-semibold">{formatCurrency(amount)}</p>
-          <p className="text-secundary text-sm font-medium">
-            {paymentMethodLabel[paymentMethod]}
-          </p>
-        </span>
-        <span className="text-secundary flex items-center gap-4 text-sm font-medium">
+        <p className="font-bold">{formatCurrency(amount)}</p>
+        <span className="text-secundary flex items-center gap-4 sm:text-sm text-xs">
           {description && <p>{description}</p>}
         </span>
-        <span className="text-secundary text-xs font-medium">
-          {formatFullDate(expenseDate)}
-        </span>
+        <div className="flex gap-4">
+          <p className="text-secundary text-xs font-medium">
+            {formatFullDate(expenseDate)}
+          </p>
+          <p className="text-secundary text-xs font-medium">
+            {paymentMethodLabel[paymentMethod]}
+          </p>
+        </div>
       </div>
       <button
         disabled={isPending}
