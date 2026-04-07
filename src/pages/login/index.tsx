@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 import FinsyLogo from "../../assets/finsy_logo.png";
 import TextInput from "../../components/TextInput";
 import PasswordInput from "../../components/PasswordInput";
 import Button from "../../components/Button";
-import { login } from "../../services/UserService";
+import { login } from "../../services/userService";
 import { useUser } from "../../hooks/user/useUser";
 import { setAccessToken } from "../../utils/auth";
 
@@ -96,9 +96,9 @@ const Login = () => {
 
       <p className="text-secundary text-sm">
         Não tem uma conta?{" "}
-        <span className="text-primary cursor-pointer font-medium">
+        <Link to="/sign-up" className="text-primary cursor-pointer font-medium">
           Criar conta
-        </span>
+        </Link>
       </p>
     </section>
   );
