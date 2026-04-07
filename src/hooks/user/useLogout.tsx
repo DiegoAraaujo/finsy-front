@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { logOut } from "../../services/UserService";
+import { logOut } from "../../services/userService";
 import { removeAccessToken } from "../../utils/auth";
 
 export const useLogout = () => {
