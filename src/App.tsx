@@ -17,6 +17,7 @@ import ProtectedLayout from "./components/ProtectedLayout";
 import MonthExpenses from "./pages/monthExpenses";
 import Dashboard from "./pages/dashboard";
 import Settings from "./pages/settings";
+import SignUp from "./pages/signUp";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Routes>
           <Route element={<PublicLayout />}>
             <Route path="/login" element={<Login />} />
+            <Route path="/sign-up" element={<SignUp />} />
           </Route>
 
           <Route element={<ProtectedLayout />}>
