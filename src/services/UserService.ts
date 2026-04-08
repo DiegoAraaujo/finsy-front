@@ -21,6 +21,25 @@ export const createUser = async (
   }
 };
 
+export const updateUser = async (updates: {
+  email?: string;
+  name?: string;
+}) => {
+  try {
+    const { data } = await api.put("/users", updates);
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const status = error.response?.status;
+      if (status === 409) {
+        throw new Error("Este Email já esta em uso!");
+      }
+    }
+
+    throw new Error("Não foi possível atualizar dados");
+  }
+};
+
 export const login = async (email: string, password: string) => {
   try {
     const { data } = await api.post("/users/login", { email, password });
