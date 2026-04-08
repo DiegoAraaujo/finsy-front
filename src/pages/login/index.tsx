@@ -6,7 +6,7 @@ import FinsyLogo from "../../assets/finsy_logo.png";
 import TextInput from "../../components/TextInput";
 import PasswordInput from "../../components/PasswordInput";
 import Button from "../../components/Button";
-import { login } from "../../services/userService";
+import { login } from "../../services/UserService";
 import { useUser } from "../../hooks/user/useUser";
 import { setAccessToken } from "../../utils/auth";
 
@@ -37,13 +37,8 @@ const Login = () => {
 
     try {
       setLoading(true);
-      const {
-        id,
-        name,
-        email: userEmail,
-        accessToken,
-      } = await login(email, password);
-      setUser({ id, name, email: userEmail });
+      const { user: createdUser, accessToken } = await login(email, password);
+      setUser(createdUser);
       setEmail("");
       setPassword("");
       setAccessToken(accessToken);
