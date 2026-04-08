@@ -18,6 +18,7 @@ import MonthExpenses from "./pages/monthExpenses";
 import Dashboard from "./pages/dashboard";
 import Settings from "./pages/settings";
 import SignUp from "./pages/signUp";
+import Profile from "./pages/profile";
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const App = () => {
               <Route path="/historic" element={<Historic />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/settings" element={<Settings />} />
+              <Route path="/settings/profile" element={<Profile />} />
               <Route path="/category/:id" element={<CategoryExpenses />} />
               <Route path="/month/:id" element={<MonthExpenses />} />
             </Route>
