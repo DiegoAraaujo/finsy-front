@@ -8,7 +8,7 @@ interface HeaderProps {
 
 const Header = ({ title, subtitle, backTo }: HeaderProps) => {
   return (
-    <header className="relative z-10 flex items-center gap-4 p-4">
+    <header className="relative z-10 flex items-center gap-4">
       <Link
         to={`/${backTo}`}
         className="cursor-pointer transition-transform duration-300 hover:-translate-x-0.5"
