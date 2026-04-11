@@ -1,16 +1,172 @@
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  BarChart,
+  Bar,
+} from "recharts";
+
+import { useGetDashboard } from "../../hooks/dashboard/useGetDashboard";
+import { formatCurrency } from "../../utils/formatCurrency";
+import { COLORS } from "../../data/colors";
+import { MONTHS } from "../../data/months";
+import Loading from "../../components/Loading";
+import { Navigate } from "react-router-dom";
+
+const formatPayment: Record<string, string> = {
+  CREDIT_CARD: "Cartão",
+  DEBIT_CARD: "Débito",
+  PIX: "PIX",
+  CASH: "Dinheiro",
+  OTHER: "Outro",
+};
+
 const Dashboard = () => {
+  const { data, isLoading } = useGetDashboard();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+  if (!data) {
+    return <Navigate to="/" />;
+  }
+
+  const formattedPayments = data.paymentMethods.map((item) => ({
+    ...item,
+    paymentMethod: formatPayment[item.paymentMethod] ?? item.paymentMethod,
+  }));
+
+  const formattedEvolution = data.evolution.map((item) => ({
+    ...item,
+    label: `${MONTHS[item.month - 1]}/${item.year}`,
+  }));
+
   return (
-    <div className="flex h-full flex-col items-center justify-center">
-      <p className="text-secundary text-sm font-bold sm:text-[16px]">
-        Página em Desenvolvimento 🚧
-      </p>
-      <p className="text-secundary text-center text-xs sm:text-sm">
-        Estamos preparando gráficos e métricas detalhadas para você acompanhar
-        suas finanças.
-        <span className="text-primary mt-2 block font-medium">
-          Disponível em breve!
-        </span>
-      </p>
+    <div className="flex h-full flex-col gap-4">
+      <div className="bg-background flex flex-col gap-2 rounded-2xl p-4">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <p className="text-secundary text-sm">Mês atual</p>
+            <p className="text-lg font-bold">
+              {formatCurrency(data.comparison.current)}
+            </p>
+          </div>
+
+          <p className="text-primary text-xl font-bold italic">Vs</p>
+
+          <div>
+            <p className="text-secundary text-sm">Mês anterior</p>
+            <p className="text-lg font-bold">
+              {formatCurrency(data.comparison.previous)}
+            </p>
+          </div>
+        </div>
+
+        <p className="text-secundary text-xs">
+          +R$ {data.comparison.current - data.comparison.previous} (
+          {data.comparison.variation.toFixed(2)}%)
+        </p>
+      </div>
+
+      <div className="bg-background flex min-h-60 flex-col gap-4 rounded-2xl p-4">
+        <p className="text-secundary text-sm">
+          Gastos por categoria (este mês)
+        </p>
+
+        <ResponsiveContainer>
+          <PieChart>
+            <Pie
+              data={data.categories}
+              dataKey="totalExpenses"
+              nameKey="name"
+              innerRadius={40}
+              outerRadius={60}
+            >
+              {data.categories.map((_, index) => (
+                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+
+            <Tooltip
+              formatter={(value, name) => [
+                formatCurrency(Number(value || 0)),
+                name,
+              ]}
+            />
+
+            <Legend layout="vertical" align="right" verticalAlign="middle" />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div className="bg-background flex min-h-70 flex-col gap-4 rounded-2xl p-4">
+        <p className="text-secundary text-sm">
+          Gastos por forma de pagamento (este mês)
+        </p>
+
+        <ResponsiveContainer>
+          <BarChart
+            data={formattedPayments}
+            layout="vertical"
+            margin={{ left: 20 }}
+          >
+            <XAxis type="number" />
+            <YAxis dataKey="paymentMethod" type="category" />
+
+            <Tooltip
+              formatter={(value, name) => [
+                formatCurrency(Number(value || 0)),
+                name,
+              ]}
+            />
+
+            <Bar dataKey="total" fill="#22c55e" radius={[0, 8, 8, 0]} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+
+      {data.evolution.length > 1 ? (
+        <div className="bg-background flex min-h-68 flex-col gap-4 rounded-2xl p-4">
+          <p className="text-secundary text-sm">
+            Evolução dos gastos (últimos 6 meses)
+          </p>
+
+          <ResponsiveContainer>
+            <AreaChart data={formattedEvolution}>
+              <XAxis dataKey="label" />
+              <YAxis />
+
+              <Tooltip
+                formatter={(value, name) => [
+                  formatCurrency(Number(value || 0)),
+                  name,
+                ]}
+              />
+
+              <Area
+                type="monotone"
+                dataKey="total"
+                stroke="#6366f1"
+                fill="#6366f1"
+                fillOpacity={0.2}
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      ) : (
+        <div className="flex h-72 items-center justify-center rounded-2xl bg-white p-4 shadow">
+          <p className="text-sm text-gray-400">
+            Dados insuficientes para exibir evolução
+          </p>
+        </div>
+      )}
     </div>
   );
 };
