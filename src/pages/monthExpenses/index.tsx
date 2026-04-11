@@ -12,6 +12,7 @@ import BudgetSummary from "../../components/BudgetSummary";
 import { useGetMonthById } from "../../hooks/month/useGetMonthById";
 import { formatMonthYear } from "../../utils/formatMonthName";
 import SummaryItemCard from "../../components/SummaryItemCard";
+import Loading from "../../components/Loading";
 
 const MonthExpenses = () => {
   const { id } = useParams();
@@ -39,11 +40,7 @@ const MonthExpenses = () => {
   } = useGetExpensesByMonthId(monthId);
 
   if (isLoadingCategories || isLoadingExpenses || isLoadingMonth) {
-    return (
-      <div className="flex h-full items-center justify-center">
-        Carregando...
-      </div>
-    );
+    return <Loading />;
   }
 
   if (isErrorCats || isErrorExp || isErrorMont || !month) {
