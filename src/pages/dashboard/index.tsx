@@ -19,6 +19,7 @@ import { COLORS } from "../../data/colors";
 import { MONTHS } from "../../data/months";
 import Loading from "../../components/Loading";
 import { Navigate } from "react-router-dom";
+import ErrorState from "../../components/ErrorState";
 
 const formatPayment: Record<string, string> = {
   CREDIT_CARD: "Cartão",
@@ -29,10 +30,16 @@ const formatPayment: Record<string, string> = {
 };
 
 const Dashboard = () => {
-  const { data, isLoading } = useGetDashboard();
+  const { data, isLoading, isError } = useGetDashboard();
 
   if (isLoading) {
     return <Loading />;
+  }
+
+  if (isError) {
+    return (
+      <ErrorState message="Não conseguimos carregar seus dados no momento. Verifique sua conexão ou tente novamente." />
+    );
   }
   if (!data) {
     return <Navigate to="/" />;

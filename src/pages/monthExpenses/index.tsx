@@ -45,7 +45,7 @@ const MonthExpenses = () => {
 
   if (isErrorCats || isErrorExp || isErrorMont || !month) {
     return (
-      <ErrorState message="Houve um problema ao carregar os dados do mês." />
+      <ErrorState message="Não conseguimos carregar seus dados no momento. Verifique sua conexão ou tente novamente." />
     );
   }
   const salary = month.salary ?? 0;

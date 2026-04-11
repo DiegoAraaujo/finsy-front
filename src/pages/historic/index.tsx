@@ -17,7 +17,9 @@ const Historic = () => {
   }
 
   if (isError || !allMonths) {
-    return <ErrorState message="Erro ao carregar os dados do histórico." />;
+    return (
+      <ErrorState message="Não conseguimos carregar seus dados no momento. Verifique sua conexão ou tente novamente." />
+    );
   }
 
   return (

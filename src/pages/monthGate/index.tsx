@@ -32,7 +32,9 @@ const MonthGate = () => {
 
   useEffect(() => {
     if (errorLatest) {
-      toast.warning(errorLatest.message);
+      toast.warning(
+        "Não foi possível carregar o último mês. Você ainda pode configurar manualmente.",
+      );
     }
   }, [errorLatest]);
 

@@ -10,12 +10,17 @@ import SummaryItemCard from "../../components/SummaryItemCard";
 import BudgetSummary from "../../components/BudgetSummary";
 
 const Home = () => {
-  const { data: currentData, error, isLoading, refetch } = useCurrentMonth();
+  const { data: currentData, isError, isLoading, refetch } = useCurrentMonth();
 
   if (isLoading) return <Loading />;
 
-  if (error) {
-    return <ErrorState message="Erro ao carregar os dados" onRetry={refetch} />;
+  if (isError) {
+    return (
+      <ErrorState
+        message="Não conseguimos carregar seus dados no momento. Verifique sua conexão ou tente novamente."
+        onRetry={refetch}
+      />
+    );
   }
 
   if (!currentData) return <Navigate to={"/"} />;

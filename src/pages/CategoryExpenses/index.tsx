@@ -34,14 +34,19 @@ const CategoryExpenses = () => {
     return <Loading />;
   }
 
-  if (!category || !expenses || errorExpenses || errorCategory)
-    return <ErrorState message="Erro ao carregar os detalhes da categoria." />;
-
+  if (errorExpenses || errorCategory)
+    return (
+      <ErrorState message="Não conseguimos carregar seus dados no momento. Verifique sua conexão ou tente novamente." />
+    );
+  if (!category || !expenses) {
+    return <ErrorState message="Dados não encontrados." />;
+  }
+  
   const totalExpenses = expenses.reduce((acc, c) => c.amount + acc, 0);
   const currentBalance = category.spendingLimit - totalExpenses;
 
   return (
-    <div className="flex h-full flex-col relative">
+    <div className="relative flex h-full flex-col">
       {addExpenseModalOpen && (
         <div
           aria-label="Modal para adicionar gasto"
@@ -79,7 +84,7 @@ const CategoryExpenses = () => {
           }
         />
       </div>
-     
+
       <div className="flex flex-1 flex-col gap-2 p-4">
         <ExpenseList
           expenses={expenses}
