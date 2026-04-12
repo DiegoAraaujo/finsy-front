@@ -32,18 +32,14 @@ const formatPayment: Record<string, string> = {
 const Dashboard = () => {
   const { data, isLoading, isError } = useGetDashboard();
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  if (isLoading) return <Loading />;
 
-  if (isError) {
+  if (isError)
     return (
       <ErrorState message="Não conseguimos carregar seus dados no momento. Verifique sua conexão ou tente novamente." />
     );
-  }
-  if (!data) {
-    return <Navigate to="/" />;
-  }
+
+  if (!data) return <Navigate to="/" />;
 
   const formattedPayments = data.paymentMethods.map((item) => ({
     ...item,
@@ -54,6 +50,29 @@ const Dashboard = () => {
     ...item,
     label: `${MONTHS[item.month - 1]}/${item.year}`,
   }));
+
+  const hasAnyData =
+    data.categories.some((c) => c.totalExpenses > 0) ||
+    data.paymentMethods.some((p) => p.total > 0) ||
+    data.evolution.some((e) => e.total > 0);
+
+  const hasCategoryData = data.categories.some((c) => c.totalExpenses > 0);
+
+  const hasPaymentData = formattedPayments.some((p) => p.total > 0);
+
+  if (!hasAnyData) {
+    return (
+      <div className="flex h-full flex-col items-center justify-center gap-2 text-center">
+        <p className="text-lg font-bold text-gray-700">
+          Ainda não há dados financeiros
+        </p>
+        <p className="max-w-md text-sm text-gray-400">
+          Quando você adicionar suas primeiras transações, seus gráficos de
+          gastos, categorias e evolução aparecerão aqui.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-full flex-col gap-4">
@@ -87,35 +106,41 @@ const Dashboard = () => {
           Gastos por categoria (este mês)
         </p>
 
-        <ResponsiveContainer>
-          <PieChart>
-            <Pie
-              data={data.categories}
-              dataKey="totalExpenses"
-              nameKey="name"
-              innerRadius={40}
-              outerRadius={60}
-            >
-              {data.categories.map((_, index) => (
-                <Cell key={index} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
+        {hasCategoryData ? (
+          <ResponsiveContainer>
+            <PieChart>
+              <Pie
+                data={data.categories}
+                dataKey="totalExpenses"
+                nameKey="name"
+                innerRadius={40}
+                outerRadius={60}
+              >
+                {data.categories.map((_, index) => (
+                  <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
 
-            <Tooltip
-              formatter={(value, name) => [
-                formatCurrency(Number(value || 0)),
-                name,
-              ]}
-            />
+              <Tooltip
+                formatter={(value, name) => [
+                  formatCurrency(Number(value || 0)),
+                  name,
+                ]}
+              />
 
-            <Legend
-              layout="vertical"
-              align="right"
-              verticalAlign="middle"
-              wrapperStyle={{ fontSize: "12px" }}
-            />
-          </PieChart>
-        </ResponsiveContainer>
+              <Legend
+                layout="vertical"
+                align="right"
+                verticalAlign="middle"
+                wrapperStyle={{ fontSize: "12px" }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        ) : (
+          <div className="flex flex-1 items-center justify-center text-sm text-gray-400">
+            Nenhum gasto registrado em categorias ainda
+          </div>
+        )}
       </div>
 
       <div className="bg-background flex min-h-70 flex-col gap-4 rounded-2xl p-4">
@@ -123,34 +148,40 @@ const Dashboard = () => {
           Gastos por forma de pagamento (este mês)
         </p>
 
-        <ResponsiveContainer>
-          <BarChart
-            data={formattedPayments}
-            layout="vertical"
-            margin={{ left: 20 }}
-          >
-            <XAxis type="number" />
-            <YAxis
-              dataKey="paymentMethod"
-              type="category"
-              tick={{ fontSize: 14 }}
-            />
+        {hasPaymentData ? (
+          <ResponsiveContainer>
+            <BarChart
+              data={formattedPayments}
+              layout="vertical"
+              margin={{ left: 20 }}
+            >
+              <XAxis type="number" />
+              <YAxis
+                dataKey="paymentMethod"
+                type="category"
+                tick={{ fontSize: 14 }}
+              />
 
-            <Tooltip
-              formatter={(value, name) => [
-                formatCurrency(Number(value || 0)),
-                name,
-              ]}
-            />
+              <Tooltip
+                formatter={(value, name) => [
+                  formatCurrency(Number(value || 0)),
+                  name,
+                ]}
+              />
 
-            <Bar
-              dataKey="total"
-              fill="#22c55e"
-              radius={[0, 8, 8, 0]}
-              barSize={20}
-            />
-          </BarChart>
-        </ResponsiveContainer>
+              <Bar
+                dataKey="total"
+                fill="#22c55e"
+                radius={[0, 8, 8, 0]}
+                barSize={20}
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        ) : (
+          <div className="flex flex-1 items-center justify-center text-sm text-gray-400">
+            Nenhuma forma de pagamento registrada ainda
+          </div>
+        )}
       </div>
 
       {data.evolution.length > 1 ? (
