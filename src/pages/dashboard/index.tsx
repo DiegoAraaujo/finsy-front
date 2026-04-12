@@ -77,8 +77,8 @@ const Dashboard = () => {
         </div>
 
         <p className="text-secundary text-xs">
-          +R$ {data.comparison.current - data.comparison.previous} (
-          {data.comparison.variation.toFixed(2)}%)
+          + {formatCurrency(data.comparison.current - data.comparison.previous)}{" "}
+          ({data.comparison.variation.toFixed(2)}%)
         </p>
       </div>
 
@@ -108,7 +108,12 @@ const Dashboard = () => {
               ]}
             />
 
-            <Legend layout="vertical" align="right" verticalAlign="middle" />
+            <Legend
+              layout="vertical"
+              align="right"
+              verticalAlign="middle"
+              wrapperStyle={{ fontSize: "12px" }}
+            />
           </PieChart>
         </ResponsiveContainer>
       </div>
@@ -125,7 +130,11 @@ const Dashboard = () => {
             margin={{ left: 20 }}
           >
             <XAxis type="number" />
-            <YAxis dataKey="paymentMethod" type="category" />
+            <YAxis
+              dataKey="paymentMethod"
+              type="category"
+              tick={{ fontSize: 14 }}
+            />
 
             <Tooltip
               formatter={(value, name) => [
@@ -134,7 +143,12 @@ const Dashboard = () => {
               ]}
             />
 
-            <Bar dataKey="total" fill="#22c55e" radius={[0, 8, 8, 0]} />
+            <Bar
+              dataKey="total"
+              fill="#22c55e"
+              radius={[0, 8, 8, 0]}
+              barSize={20}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -147,8 +161,8 @@ const Dashboard = () => {
 
           <ResponsiveContainer>
             <AreaChart data={formattedEvolution}>
-              <XAxis dataKey="label" />
-              <YAxis />
+              <XAxis dataKey="label" tick={{ fontSize: 12 }} />
+              <YAxis tick={{ fontSize: 14 }} />
 
               <Tooltip
                 formatter={(value, name) => [
