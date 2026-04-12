@@ -36,7 +36,7 @@ export const createExpense = async (
     });
     return data;
   } catch (error) {
-    throw new Error("Não foi cadastrar um novo  gasto para esta categoria.");
+    throw new Error("Não foi possivel cadastrar um novo  gasto para esta categoria.");
   }
 };
 export const deleteExpense = async (id: number) => {
