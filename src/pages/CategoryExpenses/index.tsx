@@ -41,9 +41,8 @@ const CategoryExpenses = () => {
   if (!category || !expenses) {
     return <ErrorState message="Dados não encontrados." />;
   }
-  
+
   const totalExpenses = expenses.reduce((acc, c) => c.amount + acc, 0);
-  const currentBalance = category.spendingLimit - totalExpenses;
 
   return (
     <div className="relative flex h-full flex-col">
@@ -67,7 +66,7 @@ const CategoryExpenses = () => {
         subtitle="Detalhes da Categoria"
       />
       <BudgetSummary
-        salary={currentBalance}
+        salary={category.spendingLimit}
         expenses={totalExpenses}
         isCurrentMonth={true}
       />
