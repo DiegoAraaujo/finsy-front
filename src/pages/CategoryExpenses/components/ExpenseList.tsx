@@ -3,6 +3,7 @@ import type { Expense } from "../../../types/expense";
 import { useDeleteExpense } from "../../../hooks/expense/useDeleteExpense";
 
 import ExpenseItem from "./ExpenseItem";
+import { toast } from "sonner";
 
 interface ExpenseListProps {
   expenses: Expense[];
@@ -16,6 +17,17 @@ const ExpenseList = ({
   onRegisterExpense,
 }: ExpenseListProps) => {
   const { mutate: deleteExpense, isPending } = useDeleteExpense(categoryId);
+
+  const handleDelete = (id: number) => {
+    deleteExpense(id, {
+      onSuccess: () => {
+        toast.success("Gasto removido");
+      },
+      onError: () => {
+        toast.error("Não foi possível remover o gasto");
+      },
+    });
+  };
 
   return (
     <div className="relative z-10 flex flex-1 flex-col gap-4">
@@ -41,7 +53,7 @@ const ExpenseList = ({
                 description={expense.description}
                 paymentMethod={expense.paymentMethod}
                 expenseDate={expense.createdAt}
-                onDelete={() => deleteExpense(expense.id)}
+                onDelete={() => handleDelete(expense.id)}
                 isPending={isPending}
               />
             );
