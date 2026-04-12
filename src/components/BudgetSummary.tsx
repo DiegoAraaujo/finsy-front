@@ -11,16 +11,24 @@ const BudgetSummary = ({
   expenses,
   isCurrentMonth = true,
 }: BudgetSummaryProps) => {
-  const remaining = salary - expenses;
+  const safeSalary = Number(salary) || 0;
+  const safeExpenses = Number(expenses) || 0;
+
+  const remaining = safeSalary - safeExpenses;
   const displayRemaining = Math.max(remaining, 0);
-  const progress = salary ? Math.min((expenses / salary) * 100, 100) : 0;
-  const isOutOfMoney = remaining < 0;
+
+  const rawProgress =
+    safeSalary > 0 ? (safeExpenses / safeSalary) * 100 : 0;
+
+  const progress = Math.min(Math.max(rawProgress, 0), 100);
+
+  const isOverBudget = safeSalary > 0 && safeExpenses >= safeSalary;
 
   const getLabel = () => {
     if (isCurrentMonth) {
-      return isOutOfMoney ? "Orçamento Esgotado" : "Disponível para Gastar";
+      return isOverBudget ? "Orçamento Esgotado" : "Disponível para Gastar";
     }
-    return isOutOfMoney ? "Déficit no Mês" : "Saldo Final";
+    return isOverBudget ? "Déficit no Mês" : "Saldo Final";
   };
 
   return (
@@ -32,7 +40,7 @@ const BudgetSummary = ({
 
         <p
           className={`text-center text-4xl font-bold transition-all duration-300 sm:text-5xl ${
-            isOutOfMoney ? "text-danger" : "text-primary"
+            isOverBudget ? "text-danger" : "text-primary"
           }`}
         >
           {formatCurrency(displayRemaining)}
@@ -42,20 +50,18 @@ const BudgetSummary = ({
       <div className="flex w-full max-w-48 flex-col gap-1">
         <div className="bg-surface-subtle h-1.5 w-full overflow-hidden rounded-2xl">
           <div
-            className={`h-full transition-all duration-500 ${
-              isOutOfMoney ? "bg-danger" : "bg-primary"
-            } rounded-2xl`}
+            className={`h-full w-full transition-all duration-500 rounded-2xl ${
+              isOverBudget ? "bg-danger" : "bg-primary"
+            }`}
             style={{
-              width: `${progress}%`,
-              minWidth: progress > 0 ? "4px" : "0",
+              transform: `scaleX(${progress / 100})`,
+              transformOrigin: "left",
             }}
-          ></div>
+          />
         </div>
+
         <p className="text-secundary text-center text-xs">
-          {progress > 0 && progress < 1
-            ? progress.toFixed(1)
-            : Math.round(progress)}
-          % usado
+          {Math.round(progress)}% usado
         </p>
       </div>
     </div>
