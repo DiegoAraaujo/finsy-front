@@ -63,10 +63,10 @@ const Dashboard = () => {
   if (!hasAnyData) {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-2 text-center">
-        <p className="text-lg font-bold text-gray-700">
+        <p className="text-secundary text-lg font-bold">
           Ainda não há dados financeiros
         </p>
-        <p className="max-w-md text-sm text-gray-400">
+        <p className="text-secundary max-w-md text-sm">
           Quando você adicionar suas primeiras transações, seus gráficos de
           gastos, categorias e evolução aparecerão aqui.
         </p>
@@ -137,7 +137,7 @@ const Dashboard = () => {
             </PieChart>
           </ResponsiveContainer>
         ) : (
-          <div className="flex flex-1 items-center justify-center text-sm text-gray-400">
+          <div className="flex flex-1 items-center justify-center text-sm text-secundary">
             Nenhum gasto registrado em categorias ainda
           </div>
         )}
@@ -178,7 +178,7 @@ const Dashboard = () => {
             </BarChart>
           </ResponsiveContainer>
         ) : (
-          <div className="flex flex-1 items-center justify-center text-sm text-gray-400">
+          <div className="flex flex-1 items-center justify-center text-sm text-secundary">
             Nenhuma forma de pagamento registrada ainda
           </div>
         )}
@@ -214,7 +214,7 @@ const Dashboard = () => {
         </div>
       ) : (
         <div className="flex h-72 items-center justify-center rounded-2xl bg-white p-4 shadow">
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-secundary">
             Dados insuficientes para exibir evolução
           </p>
         </div>
