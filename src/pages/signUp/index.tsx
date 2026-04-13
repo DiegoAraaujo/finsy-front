@@ -8,6 +8,7 @@ import PasswordInput from "../../components/PasswordInput";
 import Button from "../../components/Button";
 import { createUser } from "../../services/UserService";
 import { useUser } from "../../hooks/user/useUser";
+import { setAccessToken } from "../../utils/auth";
 
 const SignUp = () => {
   const [email, setEmail] = useState<string>("");
@@ -15,7 +16,7 @@ const SignUp = () => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const { user } = useUser();
+  const { user, setUser } = useUser();
   const navigate = useNavigate();
 
   if (user) {
@@ -42,11 +43,17 @@ const SignUp = () => {
     }
     try {
       setLoading(true);
-      await createUser(email, password, name);
+      const { user: newUser, accessToken } = await createUser(
+        email,
+        password,
+        name,
+      );
+      setUser(newUser);
+      setAccessToken(accessToken);
       setEmail("");
       setPassword("");
       toast.success("Conta criada com sucesso! Faça login para continuar.");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
