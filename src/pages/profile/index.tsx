@@ -5,7 +5,7 @@ import { useUser } from "../../hooks/user/useUser";
 import Button from "../../components/Button";
 import { useState } from "react";
 import { toast } from "sonner";
-import { updateUser } from "../../services/UserService";
+import { updateUser } from "../../services/userService";
 
 const Profile = () => {
   const { user, setUser } = useUser();

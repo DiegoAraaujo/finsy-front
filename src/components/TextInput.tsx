@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface TextInputProps {
   label: string;
   type?: string;

@@ -4,7 +4,7 @@ import {
   setAccessToken,
   removeAccessToken,
 } from "../utils/auth";
-import { refreshToken } from "../services/UserService";
+import { refreshToken } from "./userService";
 
 interface FailedRequest {
   resolve: (token: string) => void;

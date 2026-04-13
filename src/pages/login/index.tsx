@@ -6,7 +6,7 @@ import FinsyLogo from "../../assets/finsy_logo.png";
 import TextInput from "../../components/TextInput";
 import PasswordInput from "../../components/PasswordInput";
 import Button from "../../components/Button";
-import { login } from "../../services/UserService";
+import { login } from "../../services/userService";
 import { useUser } from "../../hooks/user/useUser";
 import { setAccessToken } from "../../utils/auth";
 
