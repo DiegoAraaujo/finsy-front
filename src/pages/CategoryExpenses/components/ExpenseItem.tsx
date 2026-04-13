@@ -28,12 +28,12 @@ const ExpenseItem = ({
   expenseDate,
 }: ExpenseItem) => {
   return (
-    <div className="border-surface-subtle flex justify-between rounded-t-lg border-t py-4">
+    <div className="border-surface-subtle flex justify-between rounded-t-lg border-t py-4 gap-4">
       <div className="flex flex-col gap-1">
         <p className="font-bold">{formatCurrency(amount)}</p>
-        <span className="text-secundary flex items-center gap-4 sm:text-sm text-xs">
+        <p className="text-secundary flex items-center gap-4 sm:text-sm text-xs break-all max-w-full">
           {description && <p>{description}</p>}
-        </span>
+        </p>
         <div className="flex gap-4">
           <p className="text-secundary text-xs font-medium">
             {formatFullDate(expenseDate)}
