@@ -31,7 +31,7 @@ const Settings = () => {
         description="Alterar Senha"
         title="Atualizar senha de acesso"
         icon="bi bi-shield"
-        onClick={() => navigate("/settings/password")}
+        onClick={() => navigate("/settings/reset-password")}
       />
 
       <SettingItem
