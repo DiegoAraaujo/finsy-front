@@ -19,6 +19,7 @@ import Dashboard from "./pages/dashboard";
 import Settings from "./pages/settings";
 import SignUp from "./pages/signUp";
 import Profile from "./pages/profile";
+import ResetPassword from "./pages/resetPassword";
 
 const App = () => {
   return (
@@ -45,6 +46,10 @@ const App = () => {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/settings/profile" element={<Profile />} />
+              <Route
+                path="/settings/reset-password"
+                element={<ResetPassword />}
+              />
               <Route path="/category/:id" element={<CategoryExpenses />} />
               <Route path="/month/:id" element={<MonthExpenses />} />
             </Route>
