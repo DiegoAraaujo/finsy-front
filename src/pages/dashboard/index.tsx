@@ -75,7 +75,8 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="flex h-full flex-col gap-4">
+    <div className="flex h-full flex-col gap-4 py-8 px-4">
+      <p className="font-bold">Visão Geral</p>
       <div className="bg-background flex flex-col gap-2 rounded-2xl p-4">
         <div className="flex items-center justify-between gap-4">
           <div>
@@ -137,7 +138,7 @@ const Dashboard = () => {
             </PieChart>
           </ResponsiveContainer>
         ) : (
-          <div className="flex flex-1 items-center justify-center text-sm text-secundary">
+          <div className="text-secundary flex flex-1 items-center justify-center text-sm">
             Nenhum gasto registrado em categorias ainda
           </div>
         )}
@@ -178,7 +179,7 @@ const Dashboard = () => {
             </BarChart>
           </ResponsiveContainer>
         ) : (
-          <div className="flex flex-1 items-center justify-center text-sm text-secundary">
+          <div className="text-secundary flex flex-1 items-center justify-center text-sm">
             Nenhuma forma de pagamento registrada ainda
           </div>
         )}
@@ -214,7 +215,7 @@ const Dashboard = () => {
         </div>
       ) : (
         <div className="flex h-72 items-center justify-center rounded-2xl bg-white p-4 shadow">
-          <p className="text-sm text-secundary">
+          <p className="text-secundary text-sm">
             Dados insuficientes para exibir evolução
           </p>
         </div>
