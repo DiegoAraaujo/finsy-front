@@ -5,7 +5,7 @@ import BottomBar from "./BottomBar";
 const AppLayout = () => {
  
   return (
-    <main className="relative m-auto flex h-dvh w-full max-w-2xl flex-col overflow-x-hidden">
+    <main className="relative m-auto flex h-dvh w-full max-w-2xl flex-col overflow-x-hidden no-scrollbar">
       <PageHeaderBackground />
       <div className="no-scrollbar relative z-20 h-full flex-1 overflow-y-auto p-4">
         <Outlet />
