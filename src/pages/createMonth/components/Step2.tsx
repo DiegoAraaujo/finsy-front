@@ -35,7 +35,7 @@ const Step2 = ({
     salary > 0 && categories.length > 0 && totalAllocated === salary;
 
   return (
-    <>
+    <div className="flex w-full flex-col items-center gap-4 pb-8">
       {isAddCategoryModalOpen && (
         <div
           aria-label="Modal para adicionar categoria"
@@ -86,7 +86,7 @@ const Step2 = ({
         }
         disabled={!isValid}
       />
-    </>
+    </div>
   );
 };
 

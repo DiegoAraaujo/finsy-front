@@ -52,7 +52,7 @@ const CreateMonth = () => {
   };
 
   return (
-    <section className="m-auto flex h-full w-full max-w-100 flex-col items-center gap-4">
+    <section className="m-auto flex h-full w-full max-w-100 flex-col items-center gap-4 py-8">
       <Stepper currentStep={step} onStepChange={handleStepChange} />
       {step === 1 && (
         <Step1
