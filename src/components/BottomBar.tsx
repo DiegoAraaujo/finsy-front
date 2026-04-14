@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const BottomBar = () => {
   return (
-    <div className="border-surface-subtle bg-background flex w-full justify-between border-t p-4">
+    <div className="border-surface-subtle bg-background flex w-full justify-between border-t p-4 mt-4">
       <Link
         to="/home"
         className="hover:bg-primary/10 hover:text-primary flex flex-col items-center rounded-2xl px-4 py-1 font-semibold"
