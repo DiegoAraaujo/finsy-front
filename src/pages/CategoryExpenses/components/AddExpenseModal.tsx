@@ -22,7 +22,7 @@ const AddExpenseModal = ({ onClose, categoryId }: AddExpenseModalProps) => {
   const [description, setDescription] = useState<string>("");
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("PIX");
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date().toLocaleDateString("en-CA");
   const [expenseDate, setExpenseDate] = useState<string>(today);
 
   const { mutateAsync, isPending } = useCreateExpense(categoryId);
