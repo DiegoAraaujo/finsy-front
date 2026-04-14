@@ -21,24 +21,27 @@ let failedQueue: FailedRequest[] = [];
 
 const processQueue = (error: any, token: string | null = null) => {
   failedQueue.forEach((prom) => {
-    if (error) {
-      prom.reject(error);
+    if (error || !token) {
+      prom.reject(error || new Error("Refresh failed"));
     } else {
-      prom.resolve(token!);
+      prom.resolve(token);
     }
   });
+
   failedQueue = [];
 };
 
 api.interceptors.request.use(
   (config) => {
     const token = getAccessToken();
+
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     return config;
   },
-  (error) => Promise.reject(error),
+  (error) => Promise.reject(error)
 );
 
 api.interceptors.response.use(
@@ -48,39 +51,43 @@ api.interceptors.response.use(
       _retry?: boolean;
     };
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    const status = error.response?.status;
+
+    if (status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
       if (isRefreshing) {
         return new Promise<string>((resolve, reject) => {
           failedQueue.push({ resolve, reject });
-        })
-          .then((token) => {
-            if (originalRequest.headers) {
-              originalRequest.headers.Authorization = `Bearer ${token}`;
-            }
-            return api(originalRequest);
-          })
-          .catch((err) => Promise.reject(err));
+        }).then((token) => {
+          originalRequest.headers.Authorization = `Bearer ${token}`;
+          return api(originalRequest);
+        });
       }
 
-      originalRequest._retry = true;
       isRefreshing = true;
 
       try {
         const newAccessToken = await refreshToken();
 
-        setAccessToken(newAccessToken);
-
-        if (originalRequest.headers) {
-          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        if (!newAccessToken) {
+          throw new Error("Refresh retornou token inválido");
         }
 
+        setAccessToken(newAccessToken);
+
         processQueue(null, newAccessToken);
+
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
 
         return api(originalRequest);
       } catch (refreshError) {
         processQueue(refreshError, null);
+
         removeAccessToken();
+
         window.location.href = "/login";
+
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;
@@ -88,7 +95,7 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  },
+  }
 );
 
 export default api;
