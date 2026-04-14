@@ -30,6 +30,7 @@ const Home = () => {
     0,
   );
 
+  const balance = currentData.month.salary - totalExpenses;
   return (
     <div className="flex h-full flex-col">
       <BudgetSummary
@@ -43,8 +44,8 @@ const Home = () => {
         <SummaryItemCard label="Gastos" value={totalExpenses} />
         <SummaryItemCard
           label="saldo"
-          value={totalExpenses}
-          textColor={`${totalExpenses <= currentData.month.salary ? "text-base" : "text-danger"} `}
+          value={balance}
+          textColor={`${balance > 0 ? "text-base" : "text-danger"} `}
         />
       </div>
 
