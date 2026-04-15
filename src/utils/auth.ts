@@ -9,3 +9,15 @@ export const getAccessToken = (): string | null => {
 export const removeAccessToken = () => {
   sessionStorage.removeItem("finsy_acessToken");
 };
+
+export const setRefreshToken = (token: string) => {
+  localStorage.setItem("finsy_refreshToken", token);
+};
+
+export const getRefreshToken = (): string | null => {
+  return localStorage.getItem("finsy_refreshToken");
+};
+
+export const removeRefreshToken = () => {
+  localStorage.removeItem("finsy_refreshToken");
+};
