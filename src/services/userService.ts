@@ -1,5 +1,10 @@
+import {
+  getRefreshToken,
+  removeRefreshToken,
+  setRefreshToken,
+} from "../utils/auth";
 import api from "./api";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 
 export const createUser = async (
   email: string,
@@ -8,6 +13,11 @@ export const createUser = async (
 ) => {
   try {
     const { data } = await api.post("/users", { email, password, name });
+
+    if (data.refreshToken) {
+      setRefreshToken(data.refreshToken);
+    }
+
     return data;
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -43,6 +53,11 @@ export const updateUser = async (updates: {
 export const login = async (email: string, password: string) => {
   try {
     const { data } = await api.post("/users/login", { email, password });
+
+    if (data.refreshToken) {
+      setRefreshToken(data.refreshToken);
+    }
+
     return data;
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -56,26 +71,30 @@ export const login = async (email: string, password: string) => {
   }
 };
 
-export const refreshToken = async () => {
+export const logOut = async () => {
   try {
-    const { data } = await api.post("/users/refresh");
-    return data;
+    removeRefreshToken();
   } catch (error) {
-    if (error instanceof AxiosError) {
-      const status = error.response?.status;
-      if (status === 401) {
-        throw new Error("Sua sessão expirou. Faça login novamente.");
-      }
-    }
-    throw new Error("Não foi possível renovar sua sessão. Tente novamente.");
+    throw new Error("Ocorreu um erro ao tentar encerrar a sessão");
   }
 };
 
-export const logOut = async () => {
+export const refreshToken = async () => {
   try {
-    const { data } = await api.post("/users/logout");
-    return data;
+    const storedRefresh = getRefreshToken();
+    if (!storedRefresh) throw new Error("No refresh token stored");
+
+    const { data } = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/users/refresh`,
+      {},
+      { headers: { Authorization: `Bearer ${storedRefresh}` } },
+    );
+
+    return data.accessToken;
   } catch (error) {
-    throw new Error("Ocorreu um erro ao tentar encertrar a sessão");
+    if (error instanceof AxiosError && error.response?.status === 401) {
+      throw new Error("Sua sessão expirou. Faça login novamente.");
+    }
+    throw error;
   }
 };

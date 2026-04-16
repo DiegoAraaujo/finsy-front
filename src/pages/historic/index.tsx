@@ -40,6 +40,7 @@ const Historic = () => {
               month.month === currentMonth && month.year === currentYear;
             return (
               <MonthCard
+                key={month.id}
                 month={month.month}
                 monthId={month.id}
                 salary={month.salary}
