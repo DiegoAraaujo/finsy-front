@@ -5,21 +5,22 @@ import {
   removeAccessToken,
 } from "../utils/auth";
 import { refreshToken } from "./userService";
+import { userError } from "../utils/userError";
 
 interface FailedRequest {
   resolve: (token: string) => void;
-  reject: (error: any) => void;
+  reject: (error: unknown) => void;
 }
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL,
+  baseURL: "/api",
   withCredentials: true,
 });
 
 let isRefreshing = false;
 let failedQueue: FailedRequest[] = [];
 
-const processQueue = (error: any, token: string | null = null) => {
+const processQueue = (error: unknown, token: string | null = null) => {
   failedQueue.forEach((prom) => {
     if (error || !token) {
       prom.reject(error || new Error("Refresh failed"));
@@ -37,18 +38,44 @@ api.interceptors.request.use(
 
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
+    } else if (config.headers) {
+      config.headers.delete("Authorization");
     }
 
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 api.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
-    const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean };
+    error.message = userError(error);
+    if (error.response) {
+      const payload = error.response.data;
+      error.response.data = {
+        code:
+          payload && typeof payload === "object"
+            ? (payload as { code?: unknown }).code
+            : undefined,
+        message: error.message,
+      };
+    }
+    const originalRequest = error.config as InternalAxiosRequestConfig & {
+      _retry?: boolean;
+    };
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    const isPublicAuth =
+      originalRequest?.url === "/users/forgot-password" ||
+      originalRequest?.url === "/users/reset-password" ||
+      originalRequest?.url === "/users/confirm-email" ||
+      originalRequest?.url === "/users/login" ||
+      (originalRequest?.url === "/users" && originalRequest?.method === "post");
+    if (
+      error.response?.status === 401 &&
+      originalRequest &&
+      !isPublicAuth &&
+      !originalRequest._retry
+    ) {
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
@@ -65,9 +92,8 @@ api.interceptors.response.use(
 
       try {
         const newAccessToken = await refreshToken();
-        
+
         setAccessToken(newAccessToken);
-        api.defaults.headers.common["Authorization"] = `Bearer ${newAccessToken}`;
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
 
         processQueue(null, newAccessToken);
@@ -75,7 +101,7 @@ api.interceptors.response.use(
       } catch (refreshError) {
         processQueue(refreshError, null);
         removeAccessToken();
-        
+
         if (window.location.pathname !== "/login") {
           window.location.href = "/login";
         }
@@ -85,7 +111,7 @@ api.interceptors.response.use(
       }
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;

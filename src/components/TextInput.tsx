@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 interface TextInputProps {
   label: string;
   type?: string;
@@ -9,7 +10,6 @@ interface TextInputProps {
   maxLength?: number;
   onChange: (value: string) => void;
 }
-
 const TextInput = ({
   label,
   type = "text",
@@ -28,9 +28,11 @@ const TextInput = ({
       </label>
 
       <div
-        className={`border-surface-subtle bg-background flex gap-4 rounded-2xl border p-2`}
+        className={cn(
+          "input-control [&:focus-within]:border-primary border-surface-subtle bg-background flex gap-4 rounded-2xl border p-2 [&_>_input:focus-visible]:outline-none",
+        )}
       >
-        {icon && <i className={`bi ${icon} text-primary`} />}
+        {icon && <i aria-hidden="true" className={`bi ${icon} text-primary`} />}
         <input
           value={value}
           type={type}
@@ -45,5 +47,4 @@ const TextInput = ({
     </div>
   );
 };
-
 export default TextInput;
