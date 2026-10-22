@@ -1,14 +1,19 @@
-import { Navigate, Outlet } from "react-router-dom";
+"use client";
+import Redirect from "@/components/Redirect";
+import { type ReactNode } from "react";
 import { useUser } from "../hooks/user/useUser";
+import Loading from "./Loading";
 
-const ProtectedLayout = () => {
-  const { user } = useUser();
+const ProtectedLayout = ({ children }: { children: ReactNode }) => {
+  const { user, isRestoring } = useUser();
+
+  if (isRestoring) return <Loading fullScreen label="Abrindo seu espaço…" />;
 
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <Redirect to="/login" replace />;
   }
 
-  return <Outlet />;
+  return <>{children}</>;
 };
 
 export default ProtectedLayout;

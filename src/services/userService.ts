@@ -1,22 +1,21 @@
-import {
-  getRefreshToken,
-  removeRefreshToken,
-  setRefreshToken,
-} from "../utils/auth";
+import { removeRefreshToken } from "../utils/auth";
+import { removeAccessToken } from "../utils/auth";
 import api from "./api";
 import axios, { AxiosError } from "axios";
+import { userError } from "../utils/userError";
+import { TERMS_VERSION } from "@/lib/legal";
 
 export const createUser = async (
   email: string,
   password: string,
   name: string,
+  confirmPassword: string,
+  acceptsTerms: boolean,
 ) => {
   try {
-    const { data } = await api.post("/users", { email, password, name });
+    const { data } = await api.post("/users", { email, password, name, confirmPassword, termsVersion: acceptsTerms ? TERMS_VERSION : undefined });
 
-    if (data.refreshToken) {
-      setRefreshToken(data.refreshToken);
-    }
+    removeRefreshToken();
 
     return data;
   } catch (error) {
@@ -34,6 +33,7 @@ export const createUser = async (
 export const updateUser = async (updates: {
   email?: string;
   name?: string;
+  currentPassword?: string;
 }) => {
   try {
     const { data } = await api.put("/users", updates);
@@ -46,7 +46,9 @@ export const updateUser = async (updates: {
       }
     }
 
-    throw new Error("Não foi possível atualizar dados");
+    throw new Error(
+      userError(error, "Não foi possível atualizar seus dados agora."),
+    );
   }
 };
 
@@ -54,9 +56,7 @@ export const login = async (email: string, password: string) => {
   try {
     const { data } = await api.post("/users/login", { email, password });
 
-    if (data.refreshToken) {
-      setRefreshToken(data.refreshToken);
-    }
+    removeRefreshToken();
 
     return data;
   } catch (error) {
@@ -73,23 +73,24 @@ export const login = async (email: string, password: string) => {
 
 export const logOut = async () => {
   try {
+    await api.post("/users/logout");
+    removeAccessToken();
     removeRefreshToken();
-  } catch (error) {
+  } catch {
     throw new Error("Ocorreu um erro ao tentar encerrar a sessão");
   }
 };
 
-export const refreshToken = async () => {
+const performRefresh = async () => {
   try {
-    const storedRefresh = getRefreshToken();
-    if (!storedRefresh) throw new Error("No refresh token stored");
-
     const { data } = await axios.post(
-      `${import.meta.env.VITE_BASE_URL}/users/refresh`,
+      "/api/users/refresh",
       {},
-      { headers: { Authorization: `Bearer ${storedRefresh}` } },
+      { withCredentials: true },
     );
 
+    if (typeof data.accessToken !== "string" || !data.accessToken)
+      throw new Error("Session unavailable");
     return data.accessToken;
   } catch (error) {
     if (error instanceof AxiosError && error.response?.status === 401) {
@@ -97,4 +98,18 @@ export const refreshToken = async () => {
     }
     throw error;
   }
+};
+
+let refreshPromise: Promise<string> | null = null;
+export const refreshToken = async (): Promise<string> => {
+  if (!refreshPromise) {
+    const run = () => performRefresh() as Promise<string>;
+    refreshPromise = (async () =>
+      navigator.locks
+        ? await navigator.locks.request("finsy-refresh", run)
+        : await run())().finally(() => {
+      refreshPromise = null;
+    });
+  }
+  return refreshPromise!;
 };
